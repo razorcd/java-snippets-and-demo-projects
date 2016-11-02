@@ -19,5 +19,15 @@
     <url-pattern>/helloThroughFilter</url-pattern>
   </filter-mapping>
 
+  <servlet>
+    <servlet-name>HelloServletAsyncName</servlet-name>
+    <servlet-class>com.simpleservlet.demo.HelloServletAsync</servlet-class>
+    <async-supported>true</async-supported>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelloServletAsyncName</servlet-name>
+    <url-pattern>/helloasync</url-pattern>
+  </servlet-mapping>
+
 </web-app>
 
