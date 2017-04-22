@@ -7,7 +7,7 @@
 ```
 javac -d WEB-INF/classes -classpath /home/razor/applications/apache-tomcat-9.0.2/lib/servlet-api.jar *.java
 ```
-- move folder to `..../apache-tomcat-9.0.2/webapps` and start Tomcat
+- move project files to `..../apache-tomcat-9.0.2/webapps/simple-servlet-demo/` and start Tomcat
 
 ###### With war file:
 
