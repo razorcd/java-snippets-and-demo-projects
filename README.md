@@ -14,6 +14,12 @@ javac -d WEB-INF/classes -classpath /home/razor/applications/apache-tomcat-9.0.2
 - to create `war` file run: `jar -cvf simpleservletWar.war .`
 - deploy the .war file in Tomcat
 
+###### With maven
+
+- to install all dependencies: `mvn clean install`
+- to start tomcat server: `mvn tomcat7:run`
+
+
 
 ### Use
 
@@ -21,3 +27,4 @@ javac -d WEB-INF/classes -classpath /home/razor/applications/apache-tomcat-9.0.2
   - for servlet page: `http://localhost:8080/simple-servlet-demo/hello`
   - for filtered page: `http://localhost:8080/simple-servlet-demo/helloThroughFilter`
   - for async servlet page: `http://localhost:8080/simple-servlet-demo/helloasync`
+
