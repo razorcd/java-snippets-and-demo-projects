@@ -1,7 +1,9 @@
-## Servlet Exmaple
+## Simple Servlet Demo
 
 
 ### Seup
+
+###### With whole folder:
 
 - create `class` file:
 ```
@@ -20,11 +22,9 @@ javac -d WEB-INF/classes -classpath /home/razor/applications/apache-tomcat-9.0.2
 - to start tomcat server: `mvn tomcat7:run`
 
 
-
 ### Use
 
 - load in browser:
   - for servlet page: `http://localhost:8080/simple-servlet-demo/hello`
   - for filtered page: `http://localhost:8080/simple-servlet-demo/helloThroughFilter`
   - for async servlet page: `http://localhost:8080/simple-servlet-demo/helloasync`
-
