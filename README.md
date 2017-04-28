@@ -5,16 +5,16 @@
 
 ###### With whole folder:
 
-- create `class` file:
+- create `.class` files:
 ```
-javac -d WEB-INF/classes -classpath /home/razor/applications/apache-tomcat-9.0.2/lib/servlet-api.jar *.java
+javac -d WEB-INF/classes -classpath ....../apache-tomcat-9.0.2/lib/servlet-api.jar *.java
 ```
 - move project files to `..../apache-tomcat-9.0.2/webapps/simple-servlet-demo/` and start Tomcat
 
 ###### With war file:
 
 - to create `war` file run: `jar -cvf simpleservletWar.war .`
-- deploy the .war file in Tomcat
+- deploy the `.war` file in Tomcat
 
 ###### With maven
 
