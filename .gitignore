@@ -1,0 +1,6 @@
+**/WEB-INF/classes
+.war
+**/target
+.fuse_*
+.idea
+
