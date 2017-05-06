@@ -7,7 +7,8 @@ public class Demo {
     public static void main(String[] args) throws SQLException {
         System.out.println("Started...");
 
-        DbFacade.createDb("persons2");
+        DbFacade.createDb("db1");
+        DbFacade.createTable("db1", "table1");
     }
 
 }
