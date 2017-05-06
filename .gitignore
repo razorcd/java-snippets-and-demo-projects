@@ -1,6 +1,8 @@
-**/WEB-INF/classes
+*/WEB-INF/classes
+*/target/
+*/out/
 .war
-**/target
+.class
 .fuse_*
 .idea
 
