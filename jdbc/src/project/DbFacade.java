@@ -62,9 +62,9 @@ public class DbFacade {
 
         PreparedStatement ps = rawConnection.prepareStatement("INSERT INTO " + dbName + "." + tableName + " VALUES (?,?,?)");
         for (Row row : rows) {
-            ps.setString(1, row.getId_num());
+            ps.setString(1, row.getIdNum());
             ps.setString(2, row.getFirstName());
-            ps.setString(3, row.getLastNamed());
+            ps.setString(3, row.getLastName());
             ps.executeUpdate();
         }
 
@@ -89,9 +89,9 @@ public class DbFacade {
         ResultSet resultSet = statement.executeQuery("select * from " + tableName);
         while (resultSet.next()) {
             Row row = new Row();
-            row.setId_num(resultSet.getString("id_num"));
+            row.setIdNum(resultSet.getString("id_num"));
             row.setFirstName(resultSet.getString("first_name"));
-            row.setLastNamed(resultSet.getString("last_name"));
+            row.setLastName(resultSet.getString("last_name"));
             rows.add(row);
         }
         statement.close();

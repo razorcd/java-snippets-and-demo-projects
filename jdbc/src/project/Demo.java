@@ -19,7 +19,7 @@ public class Demo {
         System.out.println("Listing data from database db1 and table table1:");
         System.out.println("id_num   first_name   last_name");
         for (Row row : dbRows) {
-            System.out.println(row.getId_num() + "   " + row.getFirstName() + "   " + row.getLastNamed());
+            System.out.println(row.getIdNum() + "   " + row.getFirstName() + "   " + row.getLastName());
         }
 
         DbFacade.removeDb("db1");
@@ -29,14 +29,14 @@ public class Demo {
 
     private static List<Row> generateRowList() {
         Row row1 = new Row();
-        row1.setId_num("1");
+        row1.setIdNum("1");
         row1.setFirstName("Aaaa1");
-        row1.setLastNamed("Bbbb1");
+        row1.setLastName("Bbbb1");
 
         Row row2 = new Row();
-        row2.setId_num("22");
+        row2.setIdNum("22");
         row2.setFirstName("Aaaa2");
-        row2.setLastNamed("Bbbb2");
+        row2.setLastName("Bbbb2");
 
         List<Row> rows = new ArrayList<>();
         rows.add(row1);

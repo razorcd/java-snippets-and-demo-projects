@@ -2,16 +2,16 @@ package project;
 
 public class Row {
 
-    private String id_num;
+    private String idNum;
     private String firstName;
-    private String lastNamed;
+    private String lastName;
 
-    public String getId_num() {
-        return id_num;
+    public String getIdNum() {
+        return idNum;
     }
 
-    public void setId_num(String id_num) {
-        this.id_num = id_num;
+    public void setIdNum(String idNum) {
+        this.idNum = idNum;
     }
 
     public String getFirstName() {
@@ -22,11 +22,11 @@ public class Row {
         this.firstName = firstName;
     }
 
-    public String getLastNamed() {
-        return lastNamed;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastNamed(String lastNamed) {
-        this.lastNamed = lastNamed;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
