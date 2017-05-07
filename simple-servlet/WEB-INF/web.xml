@@ -29,5 +29,14 @@
     <url-pattern>/helloasync</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>GenServletName</servlet-name>
+    <servlet-class>com.simpleservlet.demo.GenServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GenServletName</servlet-name>
+    <url-pattern>/generic</url-pattern>
+  </servlet-mapping>
+
 </web-app>
 

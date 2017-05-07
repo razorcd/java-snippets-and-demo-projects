@@ -28,3 +28,4 @@ javac -d WEB-INF/classes -classpath ....../apache-tomcat-9.0.2/lib/servlet-api.j
   - for servlet page: `http://localhost:8080/simple-servlet-demo/hello`
   - for filtered page: `http://localhost:8080/simple-servlet-demo/helloThroughFilter`
   - for async servlet page: `http://localhost:8080/simple-servlet-demo/helloasync`
+  - for generic servlet page: `http://localhost:8080/simple-servlet-demo/generic`
