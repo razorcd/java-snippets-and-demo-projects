@@ -21,6 +21,8 @@ public class Demo {
         rows.add(row1);
 
         DbFacade.insertRows("db1", "table1", rows);
+
+        DbFacade.removeDb("db1");
     }
 
 }

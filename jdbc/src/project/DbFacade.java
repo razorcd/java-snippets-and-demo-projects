@@ -63,4 +63,16 @@ public class DbFacade {
         rawConnection.close();
     }
 
+    public static void removeDb(String dbName) throws SQLException {
+        Connection rawConnection = DriverManager.getConnection(baseUrl + dbName + useSsl, dbUser, dbPass);
+        rawConnection.setAutoCommit(false); //we are committing everything explicitly
+
+        Statement statement = rawConnection.createStatement();
+        statement.executeUpdate("drop database " + dbName);
+        statement.close();
+
+        rawConnection.commit();
+        rawConnection.close();
+    }
+
 }
