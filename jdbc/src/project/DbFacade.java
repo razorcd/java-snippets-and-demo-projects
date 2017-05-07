@@ -1,6 +1,7 @@
 package project;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DbFacade {
@@ -47,6 +48,14 @@ public class DbFacade {
         rawConnection.close();
     }
 
+    /**
+     * Insert rows into table
+     *
+     * @param dbName
+     * @param tableName
+     * @param rows
+     * @throws SQLException
+     */
     public static void insertRows(String dbName, String tableName, List<Row> rows) throws SQLException {
         Connection rawConnection = DriverManager.getConnection(baseUrl + dbName + useSsl, dbUser, dbPass);
         rawConnection.setAutoCommit(false); //we are committing everything explicitly
@@ -63,6 +72,43 @@ public class DbFacade {
         rawConnection.close();
     }
 
+    /**
+     * List rows from table
+     *
+     * @param dbName
+     * @param tableName
+     * @throws SQLException
+     */
+    public static List<Row> listRows(String dbName, String tableName) throws SQLException {
+        List<Row> rows = new ArrayList<>();
+
+        Connection rawConnection = DriverManager.getConnection(baseUrl + dbName + useSsl, dbUser, dbPass);
+        rawConnection.setAutoCommit(false); //we are committing everything explicitly
+
+        Statement statement = rawConnection.createStatement();
+        ResultSet resultSet = statement.executeQuery("select * from " + tableName);
+        while (resultSet.next()) {
+            Row row = new Row();
+            row.setId_num(resultSet.getString("id_num"));
+            row.setFirstName(resultSet.getString("first_name"));
+            row.setLastNamed(resultSet.getString("last_name"));
+            rows.add(row);
+        }
+        statement.close();
+
+        rawConnection.commit();
+        rawConnection.close();
+
+        return rows;
+    }
+
+
+    /**
+     * Remove database
+     *
+     * @param dbName
+     * @throws SQLException
+     */
     public static void removeDb(String dbName) throws SQLException {
         Connection rawConnection = DriverManager.getConnection(baseUrl + dbName + useSsl, dbUser, dbPass);
         rawConnection.setAutoCommit(false); //we are committing everything explicitly
