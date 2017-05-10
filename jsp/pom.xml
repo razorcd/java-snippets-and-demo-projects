@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>simple-servlet-demo</groupId>
-    <artifactId>simple-servlet-demo</artifactId>
+    <groupId>jsp-demo</groupId>
+    <artifactId>jsp-demo</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>Servlet 3 Web Application</name>
+    <name>Jsp Demo App</name>
     <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java-version>1.8</java-version>
+        <source-folder>src</source-folder>
     </properties>
 
     <dependencies>
@@ -23,8 +24,10 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
+        <sourceDirectory>${source-folder}</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -41,7 +44,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.0</version>
                 <configuration>
-                    <warSourceDirectory>${basedir}</warSourceDirectory>
+                    <warSourceDirectory>src</warSourceDirectory>
                 </configuration>
             </plugin>
 

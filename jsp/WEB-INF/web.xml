@@ -2,40 +2,11 @@
 
   <servlet>
     <servlet-name>HelloServletName</servlet-name>
-    <servlet-class>com.simpleservlet.demo.HelloServlet</servlet-class>
+    <servlet-class>project.HelloServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>HelloServletName</servlet-name>
     <url-pattern>/hello</url-pattern>
-    <url-pattern>/helloThroughFilter</url-pattern>
-  </servlet-mapping>
-
-  <filter>
-    <filter-name>HelloFilterName</filter-name>
-    <filter-class>com.simpleservlet.demo.HelloFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>HelloFilterName</filter-name>
-    <url-pattern>/helloThroughFilter</url-pattern>
-  </filter-mapping>
-
-  <servlet>
-    <servlet-name>HelloServletAsyncName</servlet-name>
-    <servlet-class>com.simpleservlet.demo.HelloServletAsync</servlet-class>
-    <async-supported>true</async-supported>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>HelloServletAsyncName</servlet-name>
-    <url-pattern>/helloasync</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
-    <servlet-name>GenServletName</servlet-name>
-    <servlet-class>com.simpleservlet.demo.GenServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>GenServletName</servlet-name>
-    <url-pattern>/generic</url-pattern>
   </servlet-mapping>
 
 </web-app>
