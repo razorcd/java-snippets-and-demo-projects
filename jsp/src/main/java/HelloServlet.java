@@ -1,4 +1,4 @@
-package project;
+package main.java;
 
 import java.io.*;
 import javax.servlet.*;
@@ -11,8 +11,8 @@ public class HelloServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request,
                     HttpServletResponse response) throws ServletException, IOException {
-    response.setContentType("text/html");
-    PrintWriter out = response.getWriter();
-    out.println("<h1>Hello from Servlet !!!</h2>");
+    RequestDispatcher requestDispatcher = request.getRequestDispatcher("hello.jsp");
+    request.setAttribute("attribute1", "attribute1 value");
+    requestDispatcher.forward(request, response);
   }
 }
