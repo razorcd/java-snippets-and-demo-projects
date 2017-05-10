@@ -12,7 +12,9 @@
 ### Use
 
 - load in browser:
-  - for servlet page: `http://localhost:8080/main.jsp-demo/hello`
+  - for index.html page: `http://localhost:8080/jsp-demo/`
+  - for index.jsp page: `http://localhost:8080/jsp-demo/index.jsp`
+  - for hello servlet with jsp page: `http://localhost:8080/jsp-demo/hello`
 
 ### Debug
 
