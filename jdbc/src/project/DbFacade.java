@@ -41,7 +41,7 @@ public class DbFacade {
         Statement statement = rawConnection.createStatement();
         statement.executeUpdate("drop table if exists " + tableName);
         statement.executeUpdate("create table " + tableName +
-                " (id_num int not null, first_name varchar(50), last_name varchar(50), primary key (id_num))");
+                " (id_num int not null, first_name varchar(50) not null, last_name varchar(50) not null, primary key (id_num))");
         statement.close();
 
         rawConnection.commit();
@@ -49,16 +49,15 @@ public class DbFacade {
     }
 
     /**
-     * Insert rows into table
+     * Insert rows into table without using a transaction
      *
      * @param dbName
      * @param tableName
      * @param rows
      * @throws SQLException
      */
-    public static void insertRows(String dbName, String tableName, List<Row> rows) throws SQLException {
+    public static void insertRowsWithoutTransaction(String dbName, String tableName, List<Row> rows) throws SQLException {
         Connection rawConnection = DriverManager.getConnection(baseUrl + dbName + useSsl, dbUser, dbPass);
-        rawConnection.setAutoCommit(false); //we are committing everything explicitly
 
         PreparedStatement ps = rawConnection.prepareStatement("INSERT INTO " + dbName + "." + tableName + " VALUES (?,?,?)");
         for (Row row : rows) {
@@ -68,8 +67,44 @@ public class DbFacade {
             ps.executeUpdate();
         }
 
-        rawConnection.commit();
         rawConnection.close();
+    }
+
+    /**
+     * Insert rows into table while using a transaction.
+     *
+     * @param dbName
+     * @param tableName
+     * @param rows
+     * @throws SQLException
+     */
+    public static void insertRowsWithTransaction(String dbName, String tableName, List<Row> rows) throws SQLException {
+        Connection rawConnection = DriverManager.getConnection(baseUrl + dbName + useSsl, dbUser, dbPass);
+        rawConnection.setAutoCommit(false); //we are committing everything explicitly. Enables Transaction.
+
+        try {
+            System.out.println("\nStarting updating with transaction process.");
+            PreparedStatement ps = rawConnection.prepareStatement("INSERT INTO " + dbName + "." + tableName + " VALUES (?,?,?)");
+            for (Row row : rows) {
+                ps.setString(1, row.getIdNum());
+                ps.setString(2, row.getFirstName());
+                ps.setString(3, row.getLastName());
+                System.out.println("Executing update for record: " + row.getIdNum());
+                ps.executeUpdate();
+                System.out.println("Finished update for record: " + row.getIdNum());
+            }
+
+            System.out.println("Commiting data to DB.");
+            rawConnection.commit();
+            System.out.println("Commit is unexpectedly successfull.");
+        } catch (SQLException ex) {
+            System.out.println("! Committing to DB failed. Error: " + ex.getMessage());
+//            throw ex; //finally block is executed before throwing this exception
+//            ex.printStackTrace(); //normally trow an app exception here
+        } finally {
+            System.out.println("Closing db connection.\n");
+            rawConnection.close();
+        }
     }
 
     /**
