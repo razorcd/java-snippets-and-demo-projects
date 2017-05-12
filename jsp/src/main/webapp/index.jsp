@@ -7,7 +7,7 @@
     </head>
     <body bgcolor="silver">
         <h1>JSP INDEX here</h1>
-        <form method="post" action="login.jsp">
+        <form method="post" action="login">
             <center>
             <table border="0" width="30%" cellpadding="3">
                 <thead>
