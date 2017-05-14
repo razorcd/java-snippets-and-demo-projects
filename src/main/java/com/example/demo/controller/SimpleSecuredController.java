@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class SimpleController {
+public class SimpleSecuredController {
 
-    @RequestMapping("/simple")
+    @RequestMapping("/simplesecured")
     public String simple() {
-        return "simple controller";
+        return "Simple Secured Endpoint";
     }
 
 }

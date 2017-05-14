@@ -1,43 +1,4 @@
-
-randomvalue: ${random.int(1,10)} # generates random number. For string see .value
-prop: property1
-
-#    prefix: ${project.basedir}/src/main/resources/templates/
-
-my:
-  config:
-    property: property1
-  message: message1
-
-
-server:
-  compression:
-    enabled: true
-    min-response-size: 0 # compress all file sizes. Default is set ti min 248?
-    mime-types: text/css     # encode only css
-#  address: razor-xps #adding different host requires the host to be also set in /etc/hosts
-#  port: 8080
-#  context-path: /alpha  # all endpoints will start with /alpha
-
 spring:
-  resources:
-#    static-locations: ${project.basedir}/src/main/resources/static/
-    cache-period: 0
-    chain:
-      cache: false
-      strategy:
-#        content:  # adds versioning to static files: mycss-69ec5f9c64e0387fd9f5e209a93a694a.css"
-#          enabled: true
-#          paths: /**
-        fixed: # adds fixed versioning to static files: /v5/css/mycss.css"
-          version: v5
-          enabled: true
-
-  mustache:
-    cache: false
-    prefix: classpath:/mustache/
-    suffix: .html.mustache
-
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:testdb
@@ -51,7 +12,6 @@ spring:
     console:
       enabled: true
       path: /h2
-
 
 
 security:
@@ -73,8 +33,3 @@ security:
       clientAuthenticationScheme: form
     resource:
       userInfoUri: https://graph.facebook.com/me
-
-
-
-
-
