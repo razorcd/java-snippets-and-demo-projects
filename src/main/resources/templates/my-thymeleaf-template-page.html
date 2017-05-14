@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>my-template-page</title>
+    <link href="../static/css/mycss.css"
+          th:href="@{/css/mycss.css}"
+          rel="stylesheet" media="screen" />
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="starter-template">
+            <h1>Spring Boot Web Thymeleaf Page</h1>
+            <h2><a th:href="@{/data.json}">Data</a> in json</h2>
+            <h2><a th:href="@{/data.xml}">Data</a> in xml</h2>
+            <h2><a th:href="@{/my-mustache-page}">Mustache</a> page</h2>
+            <h2><a th:href="@{/principal}">Principal</a> page</h2>
+            <h2><a th:href="@{/jdbcTemplateData}">JdbcTemplateData</a> page</h2>
+            <h2><a th:href="@{/h2}">H2 Console</a> page</h2>
+            <h2><a th:href="@{/logout}">Logout</a> (you might want to logout from the OAuth provider too)</h2>
+        </div>
+
+    </div>
+
+
+</body>
+</html>
