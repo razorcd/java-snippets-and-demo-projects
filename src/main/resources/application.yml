@@ -20,6 +20,14 @@ server:
 #  context-path: /alpha  # all endpoints will start with /alpha
 
 spring:
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update   # default is create-drop
+
+
   resources:
 #    static-locations: ${project.basedir}/src/main/resources/static/
     cache-period: 0
@@ -39,19 +47,34 @@ spring:
     suffix: .html.mustache
 
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:testdb
-#    url: jdbc:h2:file:/tmp/test
-    username: sa
-    password:
-    initialize: true
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/spring_app_db
+    username: root
+    password: pass123
+    initialize: false
     schema: classpath:schema.sql # same as default if file exists
 #    data: ...data.sql # same as default if file exists
-  h2:
+
+
+#    #check connection at borrowing connection pool. (checked but it is not throwing while starting when DB server down)
+#    #Actuator dependency does it also.
+#    tomcat:
+#      test-on-borrow: true
+#      validation-query: /* ping */
+#      test-on-connect: true
+#      test-while-idle: true
+#    dbcp2:
+#      test-on-borrow: true
+#      validation-query: /* ping */
+#      test-on-create: true
+#      test-while-idle: true
+#    continue-on-error: false
+
+
+  h2: # removed
     console:
       enabled: true
       path: /h2
-
 
 
 security:
@@ -73,8 +96,6 @@ security:
       clientAuthenticationScheme: form
     resource:
       userInfoUri: https://graph.facebook.com/me
-
-
 
 
 

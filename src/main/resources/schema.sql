@@ -1,7 +1,7 @@
 create table stocks(
     stock_id int,
-    company_name varchar2(50),
-    symbol varchar2(10),
+    company_name varchar(50),
+    symbol varchar(10),
     price decimal(10,2)
 );
 

@@ -9,7 +9,6 @@
 <body>
 
     <div class="container">
-
         <div class="starter-template">
             <h1>Spring Boot Web Thymeleaf Page</h1>
             <h2><a th:href="@{/data.json}">Data</a> in json</h2>
@@ -17,12 +16,12 @@
             <h2><a th:href="@{/my-mustache-page}">Mustache</a> page</h2>
             <h2><a th:href="@{/principal}">Principal</a> page</h2>
             <h2><a th:href="@{/jdbcTemplateData}">JdbcTemplateData</a> page</h2>
+            <h2><a th:href="@{/entityManagerData}">EntityManagerData</a> page</h2>
+            <h2><a th:href="@{/stockRepositoryData/C2}">StockRepository</a>(get one StockEntity by symbol "C2")</h2>
             <h2><a th:href="@{/h2}">H2 Console</a> page</h2>
             <h2><a th:href="@{/logout}">Logout</a> (you might want to logout from the OAuth provider too)</h2>
         </div>
-
     </div>
-
 
 </body>
 </html>
