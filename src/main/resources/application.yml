@@ -20,13 +20,21 @@ server:
 #  context-path: /alpha  # all endpoints will start with /alpha
 
 spring:
+#  h2: # removed
+#    console:
+#      enabled: true
+#      path: /h2
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQLDialect
     show-sql: true
     hibernate:
       ddl-auto: update   # default is create-drop
-
+  data:
+    mongodb:
+      uri: mongodb://localhost/spring_db_mongo
+#      username:
+#      password:
 
   resources:
 #    static-locations: ${project.basedir}/src/main/resources/static/
@@ -71,10 +79,7 @@ spring:
 #    continue-on-error: false
 
 
-  h2: # removed
-    console:
-      enabled: true
-      path: /h2
+
 
 
 security:

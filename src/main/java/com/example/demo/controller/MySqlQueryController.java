@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.persistance.StockEntity;
-import com.example.demo.persistance.StockRepository;
+import com.example.demo.persistanceSql.StockEntity;
+import com.example.demo.persistanceSql.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;

@@ -26,8 +26,8 @@ public class MySpringOAuth2SsoSecurityConfig extends WebSecurityConfigurerAdapte
 //		super.configure(http);
 
         http
-//            .authorizeRequests().antMatchers("/").permitAll()
-//            .and()
+            .authorizeRequests().antMatchers("/").permitAll()
+            .and()
             .authorizeRequests().antMatchers("/h2/**").permitAll()
             .anyRequest().authenticated()
             .and()
@@ -35,7 +35,7 @@ public class MySpringOAuth2SsoSecurityConfig extends WebSecurityConfigurerAdapte
             .headers().frameOptions().sameOrigin()
             .httpStrictTransportSecurity().disable()
             .and()
-            .logout().logoutUrl("/logout").logoutSuccessUrl("/h2")
+            .logout().logoutUrl("/logout").logoutSuccessUrl("/")
             ;
     }
 
