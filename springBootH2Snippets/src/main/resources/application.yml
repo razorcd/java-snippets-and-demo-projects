@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+#    url: jdbc:h2:file:/tmp/test
+    username: sa
+    password:
+    initialize: true
+    schema: classpath:schema.sql # same as default if file exists
+#    data: ...data.sql # same as default if file exists
+  h2:
+    console:
+      enabled: true
+      path: /h2
+
+
+security:
+  user: # for basic auth
+    name: admin2
+    password: pass123
+  basic:
+    enabled: false
+
+  # Add Valid OAuth redirect URIs to FB: `http://localhost:8080` and `http://localhost:8080/login`
+  oauth2:
+    client:
+      clientId: 215094162371313
+      clientSecret: fb60aafd4e4e1ad686128565ba2e30b3
+      accessTokenUri: https://graph.facebook.com/oauth/access_token
+      userAuthorizationUri: https://www.facebook.com/dialog/oauth
+      tokenName: oauth_token
+      authenticationScheme: query
+      clientAuthenticationScheme: form
+    resource:
+      userInfoUri: https://graph.facebook.com/me
