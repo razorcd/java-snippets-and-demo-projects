@@ -1,0 +1,106 @@
+
+randomvalue: ${random.int(1,10)} # generates random number. For string see .value
+prop: property1
+
+#    prefix: ${project.basedir}/src/main/resources/templates/
+
+my:
+  config:
+    property: property1
+  message: message1
+
+
+server:
+  compression:
+    enabled: true
+    min-response-size: 0 # compress all file sizes. Default is set ti min 248?
+    mime-types: text/css     # encode only css
+#  address: razor-xps #adding different host requires the host to be also set in /etc/hosts
+#  port: 8080
+#  context-path: /alpha  # all endpoints will start with /alpha
+
+spring:
+#  h2: # removed
+#    console:
+#      enabled: true
+#      path: /h2
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update   # default is create-drop
+  data:
+    mongodb:
+      uri: mongodb://localhost/spring_db_mongo
+#      username:
+#      password:
+
+  resources:
+#    static-locations: ${project.basedir}/src/main/resources/static/
+    cache-period: 0
+    chain:
+      cache: false
+      strategy:
+#        content:  # adds versioning to static files: mycss-69ec5f9c64e0387fd9f5e209a93a694a.css"
+#          enabled: true
+#          paths: /**
+        fixed: # adds fixed versioning to static files: /v5/css/mycss.css"
+          version: v5
+          enabled: true
+
+  mustache:
+    cache: false
+    prefix: classpath:/mustache/
+    suffix: .html.mustache
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/spring_app_db
+    username: root
+    password: pass123
+    initialize: false
+    schema: classpath:schema.sql # same as default if file exists
+#    data: ...data.sql # same as default if file exists
+
+
+#    #check connection at borrowing connection pool. (checked but it is not throwing while starting when DB server down)
+#    #Actuator dependency does it also.
+#    tomcat:
+#      test-on-borrow: true
+#      validation-query: /* ping */
+#      test-on-connect: true
+#      test-while-idle: true
+#    dbcp2:
+#      test-on-borrow: true
+#      validation-query: /* ping */
+#      test-on-create: true
+#      test-while-idle: true
+#    continue-on-error: false
+
+
+
+
+
+security:
+  user: # for basic auth
+    name: admin2
+    password: pass123
+  basic:
+    enabled: false
+
+  # Add Valid OAuth redirect URIs to FB: `http://localhost:8080` and `http://localhost:8080/login`
+  oauth2:
+    client:
+      clientId: 215094162371313
+      clientSecret: fb60aafd4e4e1ad686128565ba2e30b3
+      accessTokenUri: https://graph.facebook.com/oauth/access_token
+      userAuthorizationUri: https://www.facebook.com/dialog/oauth
+      tokenName: oauth_token
+      authenticationScheme: query
+      clientAuthenticationScheme: form
+    resource:
+      userInfoUri: https://graph.facebook.com/me
+
+
+
