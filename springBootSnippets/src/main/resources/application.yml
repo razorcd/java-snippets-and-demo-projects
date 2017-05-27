@@ -36,6 +36,11 @@ spring:
 #      username:
 #      password:
 
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
   resources:
 #    static-locations: ${project.basedir}/src/main/resources/static/
     cache-period: 0
@@ -102,5 +107,16 @@ security:
     resource:
       userInfoUri: https://graph.facebook.com/me
 
+#logging:
+#  level: DEBUG # has no effect
+##debug: true
 
+#adds debugging logging wor web classpath
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+#  file: mylogs.log #log to file in root folder
+  path: logs # log folder
 

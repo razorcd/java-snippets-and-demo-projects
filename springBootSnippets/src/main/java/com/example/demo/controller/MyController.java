@@ -43,6 +43,6 @@ public class MyController {
     @RequestMapping("/date")
     @ResponseBody // - optional. Creates a body and serializes to response type.
     public Date getDate() {
-        return new Date();
+        return new Date(100);
     }
 }
