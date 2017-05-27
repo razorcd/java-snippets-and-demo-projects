@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.myConfigurations.localTimeFactory.LocalTimeFacotry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.metrics.CounterService;
 import org.springframework.http.HttpHeaders;
@@ -24,6 +25,9 @@ public class MyController {
     @Autowired
     CounterService counterService;
 
+    @Autowired
+    LocalTimeFacotry localTimeFacotry;
+
     // to load the my-template-page,html it needs dependency: spring-boot-starter-thymeleaf
     @RequestMapping({"/", "/my-thymeleaf-template-page"})
     public String myThymeleafTemplatePage() {
@@ -46,11 +50,21 @@ public class MyController {
     }
 
     @RequestMapping("/date")
-    @ResponseBody // - optional. Creates a body and serializes to response type.
+    @ResponseBody // - optional. Creates a Body and serializes to response type. Body is the response, will not look for a tempalte.
     public Date getDate() {
 
         counterService.increment("customCounter");
 
-        return new Date(100);
+        return new Date(109);
+    }
+
+    @RequestMapping("/localTime")
+    @ResponseBody
+    public String localTime() throws InterruptedException {
+        String time1 = localTimeFacotry.now().toString();
+        Thread.sleep(1000);
+        String time2 = localTimeFacotry.now().toString();
+
+        return time1 + "<br/>" + time2;
     }
 }

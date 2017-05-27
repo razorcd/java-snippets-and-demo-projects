@@ -112,11 +112,11 @@ security:
 ##debug: true
 
 #adds debugging logging wor web classpath
-logging:
-  level:
-    org:
-      springframework:
-        web: DEBUG
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        web: DEBUG
 #  file: mylogs.log #log to file in root folder
   path: logs # log folder    # now also accessible by ACTUATOR  at  /actuator/logfile
 
@@ -143,3 +143,6 @@ endpoints:
 info:
   name: "App name"
   artifact: @project.artifactId@  # accessing maven properties
+
+
+

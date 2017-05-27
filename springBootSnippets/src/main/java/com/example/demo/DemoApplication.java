@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication  // equals: @EnableAutoConfiguration, @ComponentScan, @Configuration
 //@Import(MyConfiguration.class) // specifically import a Component
@@ -17,7 +18,13 @@ import org.springframework.cache.annotation.EnableCaching;
 public class DemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+
+        ConfigurableApplicationContext context = SpringApplication.run(DemoApplication.class, args);
+
+        // Print all Beans in the context
+//        for (String contextName : context.getBeanDefinitionNames()) {
+//            System.out.println(contextName);
+//        }
 	}
 
 }
