@@ -10,8 +10,8 @@ public class LocalTimeConfiguration {
 
     // bean will be a singleton by default
     @Bean
-    public LocalTimeFacotry localTimeFacotry() {
-        return new LocalTimeFacotry();
+    public LocalTimeFactory localTimeFacotry() {
+        return new LocalTimeFactory();
     }
 
     @PostConstruct

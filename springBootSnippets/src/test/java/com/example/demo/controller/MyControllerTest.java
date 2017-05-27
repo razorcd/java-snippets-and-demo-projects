@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.myConfigurations.localTimeFactory.LocalTimeFacotry;
+import com.example.demo.myConfigurations.localTimeFactory.LocalTimeFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +22,13 @@ public class MyControllerTest {
     MyController myController;
 
     @MockBean
-    LocalTimeFacotry localTimeFacotry;
+    LocalTimeFactory localTimeFactory;
 
     @Test
     public void testLocalTime() throws InterruptedException{
-        given(localTimeFacotry.now()).willReturn(LocalDateTime.of(2018,1,18,1,5,54));
+        given(localTimeFactory.now()).willReturn(LocalDateTime.of(2018,1,18,1,5,54));
         String mockedTime = "2018-01-18T01:05:54<br/>2018-01-18T01:05:54";
-        
+
         assertEquals("Should return time from LocalTimeFactory", mockedTime, myController.localTime());
     }
 }
