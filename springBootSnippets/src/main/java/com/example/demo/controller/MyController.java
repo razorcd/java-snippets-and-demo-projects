@@ -63,7 +63,7 @@ public class MyController {
         System.out.println("! Received body: " + body.toString());
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setLocation(ucBuilder.path("/api/{id}").buildAndExpand(4).toUri());
-        ResponseEntity<String> responseEntity = new ResponseEntity<>(httpHeaders, HttpStatus.CREATED);
+        ResponseEntity<String> responseEntity = new ResponseEntity<>("Received Body: "+body.toString(), httpHeaders, HttpStatus.CREATED);
         return responseEntity;
     }
 

@@ -15,10 +15,10 @@ import static org.mockito.BDDMockito.*;
 import static org.junit.Assert.*;
 
 
-// TESTS calling controller methods
+// TESTS calling controller methods. Omits Spring Security.
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MyControllerTest {
+public class MyControllerWithMethodCallTest {
 
     @Autowired
     MyController myController;

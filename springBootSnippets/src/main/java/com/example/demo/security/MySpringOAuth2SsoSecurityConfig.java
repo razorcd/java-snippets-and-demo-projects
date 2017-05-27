@@ -19,7 +19,7 @@ public class MySpringOAuth2SsoSecurityConfig extends WebSecurityConfigurerAdapte
         return principal;
     }
 
-    // Spring Security confuguration
+    // Spring Security configuration
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -27,6 +27,8 @@ public class MySpringOAuth2SsoSecurityConfig extends WebSecurityConfigurerAdapte
 
         http
             .authorizeRequests().antMatchers("/").permitAll()
+            .and()
+            .authorizeRequests().antMatchers("/localTime", "/requestParam", "/pathParam/*", "/responseEntity").permitAll()  //temporary to enable Request Tests
             .and()
             .authorizeRequests().antMatchers("/h2/**").permitAll()
             .anyRequest().authenticated()
