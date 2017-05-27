@@ -5,19 +5,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.metrics.CounterService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Controller   // - when needs templating  OR  use @RestController for rest stuff
+@RequestMapping   // - not needed
 public class MyController {
 
     @Autowired
@@ -32,12 +34,30 @@ public class MyController {
         return "/my-thymeleaf-template-page";
     }
 
-    @RequestMapping("/my-mustache-page")
+//    @RequestMapping("/my-mustache-page")
+    @GetMapping("/my-mustache-page")
     public String myMustachePage(Model model) {
         model.addAttribute("arg1", "arg1 value");
         return "/my-mustache-page";
     }
 
+    // Query parameter
+    @RequestMapping("/requestParam")
+    @ResponseBody
+    public String getRequestParam(@RequestParam String myqueryParam,
+                                  @RequestParam(defaultValue = "default123") String myDefaultQueryParam) {
+        return "the sent query param was: " + myqueryParam + "<br/>" +
+                "the default query param was: " + myDefaultQueryParam;
+    }
+
+    // Path parameter
+    @RequestMapping(value = "/pathParam/{myPathParam}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String getPathParam(@PathVariable String myPathParam) {
+        return "{'the_sent_path_param': '" + myPathParam + "'}";
+    }
+
+    // Body parameter
     @RequestMapping(value = "/responseEntity", method = RequestMethod.POST)
     public ResponseEntity<?> getResponseEntity(@RequestBody HashMap<String, String> body, UriComponentsBuilder ucBuilder) {
         System.out.println("! Received body: " + body.toString());
@@ -57,12 +77,13 @@ public class MyController {
     }
 
     @RequestMapping("/localTime")
-    @ResponseBody
-    public String localTime() throws InterruptedException {
+    public @ResponseBody String localTime() throws InterruptedException {
         String time1 = localTimeFactory.now().toString();
         Thread.sleep(1000);
         String time2 = localTimeFactory.now().toString();
 
         return time1 + "<br/>" + time2;
     }
+
+
 }

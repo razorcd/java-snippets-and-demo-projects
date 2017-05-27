@@ -8,7 +8,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 
-@SpringBootApplication  // equals: @EnableAutoConfiguration, @ComponentScan, @Configuration
+@SpringBootApplication(scanBasePackages = {"com.example.demo"})  // equals: @EnableAutoConfiguration, @ComponentScan, @Configuration
 //@Import(MyConfiguration.class) // specifically import a Component
 //@ComponentScan // scan all classpath for Components and Import them in main context
 @EnableConfigurationProperties(value = MyConfigurationProperty.class)

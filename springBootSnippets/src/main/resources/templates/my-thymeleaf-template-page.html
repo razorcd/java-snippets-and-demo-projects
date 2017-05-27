@@ -18,9 +18,14 @@
 
             <h2><a th:href="@{#}" onclick="doPost('/responseEntity', '{}', 'application/json')">ResponseEntity (AJAX POST. See network in console)</a> page</h2>
 
+
+            <h2><a th:href="@{/requestParam?myqueryParam=a123}"> RequestParam (with myqueryParam = a123 and myDefaultQueryParam missing)</a> page</h2>
+            <h2><a th:href="@{/pathParam/onlyParam123}">PathParam ({onlyParam123})</a> page</h2>
             <h2><a th:href="@{/date}">Date (ResponseBody)</a> page</h2>
             <h2><a th:href="@{/localTime}">LocalTime (LocalTime Bean)</a> page</h2>
 
+            <!--logger-->
+            <h2><a th:href="@{/myLogger}">/myLogger</a> page</h2>
 
             <h2><a th:href="@{/principal}">Principal</a> page</h2>
 

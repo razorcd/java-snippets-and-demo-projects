@@ -14,6 +14,8 @@ import static org.mockito.BDDMockito.*;
 
 import static org.junit.Assert.*;
 
+
+// TESTS calling controller methods
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MyControllerTest {
@@ -24,6 +26,8 @@ public class MyControllerTest {
     @MockBean
     LocalTimeFactory localTimeFactory;
 
+
+    // Mocking a Bean and testing endpoint result
     @Test
     public void testLocalTime() throws InterruptedException{
         given(localTimeFactory.now()).willReturn(LocalDateTime.of(2018,1,18,1,5,54));
