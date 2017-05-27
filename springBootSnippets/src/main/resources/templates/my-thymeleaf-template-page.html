@@ -18,6 +18,17 @@
 
             <h2><a th:href="@{/principal}">Principal</a> page</h2>
 
+
+            <!--cache-->
+            <!--<h2><a th:href="@{/javaxCachedData}">JavaxCachedData</a> page (reads random generated int. Refresh the page.)</h2>-->
+            <h2><a th:href="@{/ehCachedData}">EhCachedData</a> page (reads random generated int. Refresh the page.)</h2>
+
+
+            <!--&lt;!&ndash;schedule&ndash;&gt;-->
+            <!--<h2><a th:href="@{/fixedDelayScheduledData}">FixedDelayScheduledData10sec</a> page (delayed method response with 10sec)</h2>-->
+            <!--<h2><a th:href="@{/fixedRateScheduledData}">FixedRateScheduledData2sec</a> page (rate method response - 2sec)</h2>-->
+
+
             <!--SQL-->
             <h2><a th:href="@{/jdbcTemplateData}">JdbcTemplateData</a> page</h2>
             <h2><a th:href="@{/entityManagerData}">EntityManagerData</a> page</h2>
