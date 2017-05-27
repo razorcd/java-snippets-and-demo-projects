@@ -2,12 +2,14 @@ package com.example.demo.persistanceNoSql;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Document
 public class ToolDocument {
 
     @Id
+    @GeneratedValue
     private int toolId;
 
     private String toolName;

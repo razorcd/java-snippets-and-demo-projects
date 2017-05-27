@@ -16,8 +16,12 @@
 
             <h2><a th:href="@{/my-mustache-page}">Mustache</a> page</h2>
 
-            <h2><a th:href="@{/principal}">Principal</a> page</h2>
+            <h2><a th:href="@{#}" onclick="doPost('/responseEntity', '{}', 'application/json')">ResponseEntity (AJAX POST. See network in console)</a> page</h2>
 
+            <h2><a th:href="@{/date}">Date (ResponseBody)</a> page</h2>
+
+
+            <h2><a th:href="@{/principal}">Principal</a> page</h2>
 
             <!--cache-->
             <!--<h2><a th:href="@{/javaxCachedData}">JavaxCachedData</a> page (reads random generated int. Refresh the page.)</h2>-->
@@ -38,6 +42,13 @@
             <h2><a th:href="@{/logout}">Logout</a> (you might want to logout from the OAuth provider too)</h2>
         </div>
     </div>
-
+<script>
+    function doPost(path, body, contentType) {
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("POST", path, true);
+        xhttp.setRequestHeader("Content-type", contentType);
+        xhttp.send(body);
+    }
+</script>
 </body>
 </html>
