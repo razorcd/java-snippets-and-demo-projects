@@ -118,5 +118,28 @@ logging:
       springframework:
         web: DEBUG
 #  file: mylogs.log #log to file in root folder
-  path: logs # log folder
+  path: logs # log folder    # now also accessible by ACTUATOR  at  /actuator/logfile
 
+
+#ACTUATOR
+
+#security for spring actuator
+management:
+  security:
+    enabled: false
+  context-path: /act # adds context path to actuator. e.g /act/beans
+
+endpoints:
+  hypermedia: true  # see all actuator endpoints at /act    # requires spring-boot-starter-hateoas
+  autoconfig:
+    path: ac  # changes actuator /autoconfig to /ac
+  beans:
+    enabled: false # not accessible
+  health:
+    sensitive: true # when true it will show partial information when not logged-in.
+
+
+# actuator:  /act/info
+info:
+  name: "App name"
+  artifact: @project.artifactId@  # accessing maven properties

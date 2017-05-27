@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.metrics.CounterService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
@@ -18,6 +20,9 @@ import java.util.List;
 
 @Controller   // - when needs templating  OR  use @RestController for rest stuff
 public class MyController {
+
+    @Autowired
+    CounterService counterService;
 
     // to load the my-template-page,html it needs dependency: spring-boot-starter-thymeleaf
     @RequestMapping({"/", "/my-thymeleaf-template-page"})
@@ -43,6 +48,9 @@ public class MyController {
     @RequestMapping("/date")
     @ResponseBody // - optional. Creates a body and serializes to response type.
     public Date getDate() {
+
+        counterService.increment("customCounter");
+
         return new Date(100);
     }
 }

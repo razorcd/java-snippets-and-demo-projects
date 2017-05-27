@@ -5,4 +5,5 @@
 .class
 .fuse_*
 .idea
-
+*/logs
+.log
