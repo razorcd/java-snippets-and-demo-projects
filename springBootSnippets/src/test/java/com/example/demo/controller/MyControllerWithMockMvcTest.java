@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc  // creates the MockMvc Bean in the context
-public class MyControllerWithRequestsTest {
+public class MyControllerWithMockMvcTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -61,7 +61,7 @@ public class MyControllerWithRequestsTest {
 
     @Test
     public void testGetPathParam() throws Exception{
-        
+
         mockMvc.perform(MockMvcRequestBuilders.get("/pathParam/{myPathParam}", "myPathValue11"))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(content().string(containsString("myPathValue11")));
