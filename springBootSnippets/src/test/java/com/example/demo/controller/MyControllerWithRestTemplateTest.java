@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -18,20 +20,20 @@ import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.core.StringContains.containsString;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.junit.Assert.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
-// TESTS calling http requests with MockMvc. Goes trough Spring Security.
+// TESTS calling http requests with RestTemplate. Goes trough Spring Security.
 @RunWith(SpringRunner.class)
-@SpringBootTest
-@AutoConfigureMockMvc  // creates the MockMvc Bean in the context
-public class MyControllerWithMockMvcTest {
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class MyControllerWithRestTemplateTest {
 
     @Autowired
-    MockMvc mockMvc;
+    TestRestTemplate testRestTemplate;
 
     @MockBean
     LocalTimeFactory localTimeFactory;
@@ -43,28 +45,25 @@ public class MyControllerWithMockMvcTest {
         given(localTimeFactory.now()).willReturn(LocalDateTime.of(2018,1,18,1,5,54));
         String mockedTime = "2018-01-18T01:05:54<br/>2018-01-18T01:05:54";
 
-        String response = mockMvc.perform(MockMvcRequestBuilders.get("/localTime"))
-                .andExpect(status().is2xxSuccessful())
-                .andReturn().getResponse().getContentAsString();
+        String response = testRestTemplate.getForObject("/localTime", String.class);
 
         assertEquals("Should return time from LocalTimeFactory", mockedTime, response);
     }
 
     @Test
     public void testGetRequestParams() throws Exception {
-        mockMvc.perform(get("/requestParam")  // when MockMvcRequestBuilders is imported as static
-                            .param("myqueryParam", "myqueryParamValue"))
-                .andExpect(status().is2xxSuccessful())
-                .andExpect(content().string(containsString("myqueryParamValue")))
-                .andExpect(content().string(not(containsString("123456789"))));
+
+        String response = testRestTemplate.getForObject("/requestParam?myqueryParam=myqueryParamValue", String.class);
+
+        assertThat(response, containsString("myqueryParamValue"));
+        assertThat(response, not(containsString("123456789")));
     }
 
     @Test
     public void testGetPathParam() throws Exception{
+        String response = testRestTemplate.getForObject("/pathParam/{myPathParam}", String.class, "myPathValue11"); // with separate path params
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/pathParam/{myPathParam}", "myPathValue11"))
-                .andExpect(status().is2xxSuccessful())
-                .andExpect(content().string(containsString("myPathValue11")));
+        assertThat(response, containsString("myPathValue11"));
     }
 
     @Autowired
@@ -74,10 +73,8 @@ public class MyControllerWithMockMvcTest {
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("key1", "value1");
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/responseEntity")
-                            .content(objectMapper.writeValueAsString(requestBody))
-                            .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(status().is2xxSuccessful())
-                .andExpect(content().string("Received Body: {key1=value1}"));
+        String response = testRestTemplate.postForObject("/responseEntity", requestBody, String.class);
+
+        assertEquals("Received Body: {key1=value1}", response);
     }
 }
