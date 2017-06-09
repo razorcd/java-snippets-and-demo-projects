@@ -1,6 +1,9 @@
 package com.example.demo.persistanceSql;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,6 +24,16 @@ public class StockEntity {
     private double price2; //testing Hibernate ddl: update (here: add new column). Result: adds new column but does not remove it.
 
 
+    @JsonCreator
+    public StockEntity(@JsonProperty("companyName") String companyName,
+                       @JsonProperty("symbol") String symbol,
+                       @JsonProperty("price") double price,
+                       @JsonProperty("price2") double price2) {
+        this.companyName = companyName;
+        this.symbol = symbol;
+        this.price = price;
+        this.price2 = price2;
+    }
 
     public int getStockId() {
         return stockId;
