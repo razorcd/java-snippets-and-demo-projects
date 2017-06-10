@@ -18,26 +18,35 @@
 
             <h2><a th:href="@{#}" onclick="doPost('/responseEntity', '{}', 'application/json')">ResponseEntity (AJAX POST. See network in console)</a> page</h2>
 
+            <br/><br/>
+
 
             <h2><a th:href="@{/requestParam?myqueryParam=a123}"> RequestParam (with myqueryParam = a123 and myDefaultQueryParam missing)</a> page</h2>
             <h2><a th:href="@{/pathParam/onlyParam123}">PathParam ({onlyParam123})</a> page</h2>
             <h2><a th:href="@{/date}">Date (ResponseBody)</a> page</h2>
             <h2><a th:href="@{/localTime}">LocalTime (LocalTime Bean)</a> page</h2>
 
+            <br/><br/>
+
             <!--logger-->
             <h2><a th:href="@{/myLogger}">/myLogger</a> page</h2>
 
             <h2><a th:href="@{/principal}">Principal</a> page</h2>
 
+            <br/><br/>
+
             <!--cache-->
             <!--<h2><a th:href="@{/javaxCachedData}">JavaxCachedData</a> page (reads random generated int. Refresh the page.)</h2>-->
             <h2><a th:href="@{/ehCachedData}">EhCachedData</a> page (reads random generated int. Refresh the page.)</h2>
 
+            <br/><br/>
 
             <!--SQL-->
             <h2><a th:href="@{/jdbcTemplateData}">JdbcTemplateData</a> page</h2>
             <h2><a th:href="@{/entityManagerData}">EntityManagerData</a> page</h2>
             <h2><a th:href="@{/stockRepositoryData/C2}">SQL StockRepository</a>(get one StockEntity by symbol "C2")</h2>
+
+            <br/><br/>
 
             <!--NoSQL-->
             <h2><form action="#" th:action="@{/toolRepositoryData/T3}" method="post"><input type="submit" value="NoSQL ToolRepository"/><span>(create a ToolDocument with symbol "T3")</span></form></h2>
@@ -46,6 +55,8 @@
             <h2><a th:href="@{/toolRepositoryData/T3}">NoSQL ToolRepository</a>(get one ToolDocument by symbol "T3")</h2>
 
             <h2><a th:href="@{/logout}">Logout</a> (you might want to logout from the OAuth provider too)</h2>
+
+            <br/><br/>
 
 
             <h1>Actuator</h1>
@@ -57,6 +68,12 @@
             <h2><a th:href="@{/act/env}">/act/env</a></h2>
             <h2><a th:href="@{/act/logfile}">/act/logfile</a></h2>
             <h2><a th:href="@{/act/mappings}">/act/mappings</a></h2>
+
+            <br/><br/>
+
+            <h1>Stock JSON REST on /stocks</h1>
+            <h2>See Postman SpringBootSnippets Group</h2>
+
         </div>
     </div>
 <script>
