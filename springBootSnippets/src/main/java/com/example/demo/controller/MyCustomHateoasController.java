@@ -35,27 +35,4 @@ public class MyCustomHateoasController {
                     linkTo(methodOn(MyCustomHateoasController.class).myCustomHateoasResourceWithAssembler()).withSelfRel());
         }
     }
-
-
-
-//TODO: dig in exception handling
-//    @RequestMapping("/myCustomControllerException")
-//    public String getDataException() {
-//        throw new MyCustomControllerException();
-//    }
-//
-//
-//    @RequestMapping("/myCustomControllerExceptionWithErrorAdvice")
-//    public String getDataException() {
-//        throw new MyCustomControllerExceptionWithErrorAdvice();
-//    }
-
-
-    // Custom Exception class
-    @ResponseStatus(HttpStatus.BAD_REQUEST)  // overwrites default status on current request
-    public static class MyCustomControllerException extends Exception {
-
-    }
-
-    public static class MyCustomControllerExceptionWithErrorAdvice extends Exception {}
 }
