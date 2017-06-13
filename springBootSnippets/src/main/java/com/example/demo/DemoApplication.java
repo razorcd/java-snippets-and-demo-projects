@@ -7,6 +7,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.hateoas.config.EnableHypermediaSupport;
 
 @SpringBootApplication(scanBasePackages = {"com.example.demo"})  // equals: @EnableAutoConfiguration, @ComponentScan, @Configuration
 //@Import(MyConfiguration.class) // specifically import a Component
@@ -15,6 +16,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 @ServletComponentScan // scans for servlet classes  like @WebFilter, @WebServlet, @WebListener.  If servlets, filters are not annotated with @ComponentxC
 //@EnableResourceServer
 @EnableCaching
+@EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)  // Enable Spring HATEOAS. Required otherwise it's not fully working.
 public class DemoApplication {
 
 	public static void main(String[] args) {

@@ -1,5 +1,7 @@
 package com.example.demo.persistanceNoSql;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.GeneratedValue;
@@ -17,6 +19,18 @@ public class ToolDocument {
     private String symbol;
 
     private double price;
+
+    public ToolDocument() {
+    }
+
+    @JsonCreator
+    public ToolDocument(@JsonProperty("toolName") String toolName,
+                        @JsonProperty("symbol") String symbol,
+                        @JsonProperty("price") double price) {
+        this.toolName = toolName;
+        this.symbol = symbol;
+        this.price = price;
+    }
 
     public int getToolId() {
         return toolId;
