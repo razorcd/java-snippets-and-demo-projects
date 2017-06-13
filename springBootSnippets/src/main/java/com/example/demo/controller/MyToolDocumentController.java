@@ -6,10 +6,8 @@ import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.mvc.BasicLinkBuilder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,6 +23,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 public class MyToolDocumentController {
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public Resources<Resource<ToolDocument>> getTools() {
         Collection<ToolDocument> tools = new ArrayList<>();
         tools.add(new ToolDocument("tool1", "T1", 3.1d));

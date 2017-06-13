@@ -35,6 +35,8 @@ public class MyToolDocumentControllerTest {
 
     @Test
     public void getToolsTest() throws Exception {
+        //create toolDocument requests here
+
         String response = mockMvc.perform(MockMvcRequestBuilders.get("/tools"))
                 .andExpect(content().contentTypeCompatibleWith("application/hal+json;charset=UTF8"))
 //            .andDo(print())    // prints the request. But it is printing it by default anyway.
@@ -43,10 +45,9 @@ public class MyToolDocumentControllerTest {
 
         Resources<Resource<ToolDocument>> resources = objectMapper.readValue(response, new TypeReference<Resources<Resource<String>>>(){});
 
+        Assert.assertEquals(resources.getContent().size(), 1);
         Assert.assertTrue("should have self link", resources.hasLink("self"));
         Assert.assertEquals(resources.getLink("self"), resources.getId());
-
-//        System.out.println(resources.toString());
     }
 
     @Test

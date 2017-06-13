@@ -12,6 +12,11 @@ public class StockService {
     StockRepository stockRepository;
 
     public void createStock(StockEntity stockEntity) {
+        stockRepository.save(stockEntity);
+    }
 
+    public StockEntity getStockById(int id) throws Exception {
+        if (!stockRepository.exists(id)) throw new NoSuchFieldException();
+        return stockRepository.findOne(id);
     }
 }
