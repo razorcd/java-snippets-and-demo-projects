@@ -28,7 +28,7 @@ public class MySpringOAuth2SsoSecurityConfig extends WebSecurityConfigurerAdapte
         http
             .authorizeRequests().antMatchers("/").permitAll()
             .and()
-            .authorizeRequests().antMatchers("/localTime", "/requestParam", "/pathParam/*", "/responseEntity", "/stocks/*", "/tools/*").permitAll()  //temporary to enable Request Tests
+            .authorizeRequests().antMatchers("/localTime", "/requestParam", "/pathParam/*", "/responseEntity", "/stocks/*", "/tools", "/tools/*").permitAll()  //temporary to enable Request Tests
             .and()
             .authorizeRequests().antMatchers("/h2/**").permitAll()
             .anyRequest().authenticated()
