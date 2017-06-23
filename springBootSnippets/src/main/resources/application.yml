@@ -29,7 +29,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQLDialect
     show-sql: true
     hibernate:
-      ddl-auto: none   # default is `create-drop`.   # `update` will update schema based on the Entity properties.
+      ddl-auto: update   # default is `create-drop`.   # `update` will update schema based on the Entity properties.
   data:
     mongodb:
       uri: mongodb://localhost/spring_db_mongo

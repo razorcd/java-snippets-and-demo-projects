@@ -15,12 +15,14 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
+@Transactional  // Individual clean tests! Wraps the Test call into a transaction and the Test controller will ROLLBACK after complete.  Does not work if used with `transactional requires new`. Also does not work if running the tests in different process from main app. Works well with MockMvc.
 public class MyStockControllerTest {
 
     @Autowired
@@ -44,7 +46,7 @@ public class MyStockControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.post("/stocks")
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
-                        .content(objectMapper.writeValueAsString(new StockEntity("name1", "N1", 1.3, 1.6 ))))
+                        .content(objectMapper.writeValueAsString(new StockEntity(1, "name1", "N1", 1.3, 1.6 ))))
                 .andExpect(status().isCreated());
 
         Mockito.verify(stockService, Mockito.times(1))

@@ -29,10 +29,12 @@ public class StockEntity {
 
 
     @JsonCreator
-    public StockEntity(@JsonProperty("companyName") String companyName,
+    public StockEntity(@JsonProperty("stockId") int stockId,
+                       @JsonProperty("companyName") String companyName,
                        @JsonProperty("symbol") String symbol,
                        @JsonProperty("price") double price,
                        @JsonProperty("price2") double price2) {
+        this.stockId = stockId;
         this.companyName = companyName;
         this.symbol = symbol;
         this.price = price;
