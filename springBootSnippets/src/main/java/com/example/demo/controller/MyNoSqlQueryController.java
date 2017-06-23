@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Random;
+import java.util.UUID;
+
 @RestController
 public class MyNoSqlQueryController {
 
@@ -52,7 +55,7 @@ public class MyNoSqlQueryController {
     public void postToolRepositoryData(@PathVariable("symbolParam") String symbolParam) {
         ToolDocument toolDocument = new ToolDocument();
 
-        toolDocument.setToolId(123);
+        toolDocument.setToolId(UUID.randomUUID());
         toolDocument.setToolName("Tool000343");
         toolDocument.setSymbol(symbolParam);
         toolDocument.setPrice(100d);

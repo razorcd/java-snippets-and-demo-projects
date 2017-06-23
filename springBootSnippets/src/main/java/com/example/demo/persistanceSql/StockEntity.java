@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class StockEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "stock_id")
     private int stockId;
 
@@ -22,6 +22,10 @@ public class StockEntity {
     private double price;
 
     private double price2; //testing Hibernate ddl: update (here: add new column). Result: adds new column but does not remove it.
+
+    // Optimistic Locking protection. Part of JPA. (will not allow updating with same Entity object twice)
+    @Version
+    private int version;
 
 
     @JsonCreator
@@ -73,5 +77,13 @@ public class StockEntity {
 
     public void setPrice2(double price2) {
         this.price2 = price2;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 }

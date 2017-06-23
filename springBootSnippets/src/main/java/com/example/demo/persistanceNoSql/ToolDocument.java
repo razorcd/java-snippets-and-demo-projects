@@ -2,17 +2,20 @@ package com.example.demo.persistanceNoSql;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.UUID;
 
 @Document
 public class ToolDocument {
 
     @Id
-    @GeneratedValue
-    private int toolId;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    private UUID toolId;
 
     private String toolName;
 
@@ -20,6 +23,7 @@ public class ToolDocument {
 
     private double price;
 
+//    @SuppressWarnings("unused")
     public ToolDocument() {
     }
 
@@ -32,11 +36,11 @@ public class ToolDocument {
         this.price = price;
     }
 
-    public int getToolId() {
+    public UUID getToolId() {
         return toolId;
     }
 
-    public void setToolId(int toolId) {
+    public void setToolId(UUID toolId) {
         this.toolId = toolId;
     }
 
