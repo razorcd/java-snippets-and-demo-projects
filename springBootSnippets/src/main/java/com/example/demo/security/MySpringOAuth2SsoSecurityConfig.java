@@ -26,20 +26,20 @@ public class MySpringOAuth2SsoSecurityConfig extends WebSecurityConfigurerAdapte
 //		super.configure(http);
 
         http
-            .authorizeRequests().anyRequest().permitAll()
+//            .authorizeRequests().anyRequest().permitAll()
+//            .and()
+            .authorizeRequests().antMatchers("/").permitAll()
             .and()
-//            .authorizeRequests().antMatchers("/").permitAll()
-//            .and()
-//            .authorizeRequests().antMatchers("/localTime", "/requestParam", "/pathParam/*", "/responseEntity", "/stocks", "/stocks/*", "/tools", "/tools/*", "/myCustomHateoas", "/myCustomControlerException", "/myCustomHateoasResourceWithAssembler", "/myCustomHateoas", "/myCustomControllerException", "/myCustomControllerExceptionWithErrorAdvice").permitAll()  //temporary to enable Request Tests
-//            .and()
-//            .authorizeRequests().antMatchers("/h2/**").permitAll()
-//            .anyRequest().authenticated()
-//            .and()
-//            .csrf().disable()
-//            .headers().frameOptions().sameOrigin()
-//            .httpStrictTransportSecurity().disable()
-//            .and()
-//            .logout().logoutUrl("/logout").logoutSuccessUrl("/")
+            .authorizeRequests().antMatchers("/localTime", "/requestParam", "/pathParam/*", "/responseEntity", "/stocks", "/stocks/*", "/tools", "/tools/*", "/myCustomHateoas", "/myCustomControlerException", "/myCustomHateoasResourceWithAssembler", "/myCustomHateoas", "/myCustomControllerException", "/myCustomControllerExceptionWithErrorAdvice").permitAll()  //temporary to enable Request Tests
+            .and()
+            .authorizeRequests().antMatchers("/h2/**").permitAll()
+            .anyRequest().authenticated()
+            .and()
+            .csrf().disable()
+            .headers().frameOptions().sameOrigin()
+            .httpStrictTransportSecurity().disable()
+            .and()
+            .logout().logoutUrl("/logout").logoutSuccessUrl("/")
             ;
     }
 
