@@ -30,7 +30,7 @@ public class MySpringOAuth2SsoSecurityConfig extends WebSecurityConfigurerAdapte
 //            .and()
             .authorizeRequests().antMatchers("/").permitAll()
             .and()
-            .authorizeRequests().antMatchers("/localTime", "/requestParam", "/pathParam/*", "/responseEntity", "/stocks", "/stocks/*", "/tools", "/tools/*", "/myCustomHateoas", "/myCustomControlerException", "/myCustomHateoasResourceWithAssembler", "/myCustomHateoas", "/myCustomControllerException", "/myCustomControllerExceptionWithErrorAdvice").permitAll()  //temporary to enable Request Tests
+            .authorizeRequests().antMatchers("/localTime", "/requestParam", "/pathParam/*", "/responseEntity", "/stocks", "/stocks/*", "/tools", "/tools/*", "/myCustomHateoas", "/myCustomControlerException", "/myCustomHateoasResourceWithAssembler", "/myCustomHateoas", "/myCustomControllerException", "/myCustomControllerExceptionWithErrorAdvice", "/myDtoValidation").permitAll()  //temporary to enable Request Tests
             .and()
             .authorizeRequests().antMatchers("/h2/**").permitAll()
             .anyRequest().authenticated()
