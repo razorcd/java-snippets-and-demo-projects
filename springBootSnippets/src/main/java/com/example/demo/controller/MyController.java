@@ -23,10 +23,10 @@ import java.util.stream.IntStream;
 public class MyController {
 
     @Autowired
-    CounterService counterService;
+    private CounterService counterService;
 
     @Autowired
-    LocalTimeFactory localTimeFactory;
+    private LocalTimeFactory localTimeFactory;
 
     // to load the my-template-page,html it needs dependency: spring-boot-starter-thymeleaf
     @RequestMapping({"/", "/my-thymeleaf-template-page"})
@@ -39,6 +39,7 @@ public class MyController {
     public String myMustachePage(Model model) {
         model.addAttribute("arg1", "arg1 value");
         return "/my-mustache-page";
+//        return "redirect:/some_other_page";   // Will return 3xx that will force browser to do a new request to new url.
     }
 
     // Query parameter

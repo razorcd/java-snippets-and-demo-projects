@@ -3,6 +3,7 @@ package com.example.demo.controller.dto;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
+import sun.invoke.empty.Empty;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -10,7 +11,7 @@ import java.util.Date;
 
 public class DataValidatedDto {
 
-    @NotBlank
+//    @NotBlank(groups = Empty.class)  // to validate based on a selected group
     @Length(min = 4, max = 10)
     private String name;
 

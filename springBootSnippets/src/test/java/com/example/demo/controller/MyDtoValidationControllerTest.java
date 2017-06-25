@@ -50,6 +50,8 @@ public class MyDtoValidationControllerTest {
                     .content(objectMapper.writeValueAsString(data)))
                 .andExpect(content().string(containsString("The data you entered was valid")))
                 .andExpect(status().is2xxSuccessful());
+
+        // verify that mocked service is called
     }
 
 
@@ -71,5 +73,8 @@ public class MyDtoValidationControllerTest {
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$[0].field").value("subData.username"));
+
+        // verify that mocked service is NOT called
+
     }
 }

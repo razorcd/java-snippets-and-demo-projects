@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import sun.invoke.empty.Empty;
 
+import javax.validation.GroupSequence;
 import javax.validation.Valid;
 import java.util.HashMap;
 
@@ -15,6 +17,7 @@ public class MyDtoValidationController {
 
     @Autowired
     ObjectMapper objectMapper;
+
 
     @PostMapping(value = "/myDtoValidation")
     public String getSomeData(@RequestBody @Valid DataValidatedDto data) throws Exception {
