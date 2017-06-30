@@ -10,10 +10,19 @@ import java.util.List;
 @ConfigurationProperties(prefix = "myCustom")
 public class MyApplicationProperties {
 
+    private String stockservice;
     private String data;
     private double fraction;
-    List<URL> urls;
-    MyTestProperties testProperties;
+    private List<URL> urls;
+    private MyTestProperties testProperties;
+
+    public String getStockservice() {
+        return stockservice;
+    }
+
+    public void setStockservice(String stockservice) {
+        this.stockservice = stockservice;
+    }
 
     public String getData() {
         return data;
@@ -50,14 +59,13 @@ public class MyApplicationProperties {
     @Override
     public String toString() {
         return "MyApplicationProperties{" +
-                "data='" + data + '\'' +
+                "stockservice='" + stockservice + '\'' +
+                ", data='" + data + '\'' +
                 ", fraction=" + fraction +
                 ", urls=" + urls +
                 ", testProperties=" + testProperties +
                 '}';
     }
-
-
 
     // NESTED PROPS
     public static class MyTestProperties {

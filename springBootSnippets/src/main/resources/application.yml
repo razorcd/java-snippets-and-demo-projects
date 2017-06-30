@@ -4,7 +4,6 @@ prop: property1
 environmentProfile: profile_default
 
 
-
 #    prefix: ${project.basedir}/src/main/resources/templates/
 
 my:
@@ -16,6 +15,7 @@ my:
 
 # Custom application properties with autocomplete. Defined in MyApplicationProperties class.
 myCustom:
+  stockservice: yes   # property to enable creation of StockService Bean
   data: ${my.message}
   fraction: 2.2
   urls[0]: http://www.u0.com
@@ -141,9 +141,11 @@ security:
 
 #security for spring actuator
 management:
+
   security:
     enabled: false
   context-path: /act # adds context path to actuator. e.g /act/beans
+#  port: 9999  # actuator can run on a totally different port from main app
 
 endpoints:
   hypermedia: true  # see all actuator endpoints at /act    # requires spring-boot-starter-hateoas

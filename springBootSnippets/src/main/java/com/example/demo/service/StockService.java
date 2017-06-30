@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.persistanceSql.StockEntity;
 import com.example.demo.persistanceSql.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Propagation;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Service
 @Transactional
+//@ConditionalOnProperty(name = "myCustom.stockservice", havingValue = "yes")   //  create `StockService` Bean only if `stockservice` property is set with `yes` value
 public class StockService {
 
     @Autowired
@@ -43,3 +45,4 @@ public class StockService {
         return stockRepository.findAll();
     }
 }
+
