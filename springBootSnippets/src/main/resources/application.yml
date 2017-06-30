@@ -16,7 +16,7 @@ my:
 
 # Custom application properties with autocomplete. Defined in MyApplicationProperties class.
 myCustom:
-  data: some data
+  data: ${my.message}
   fraction: 2.2
   urls[0]: http://www.u0.com
   urls[1]: http://www.u1.com
