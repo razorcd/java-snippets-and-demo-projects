@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8"/>
     <title>Home</title>
 </head>
 <body>
+    <div>Logged in as: <p sec:authentication="principal"></p></div>
+
     <a href="/">Public page</a><br/>
     <a href="/admin">Admin page</a><br/>
     <a href="/mysecured">Secured page</a><br/>
     <a href="/anonymous">Anonymous page</a><br/>
+
+
+    <p sec:authorize="hasRole('ADMIN')">Only admin users can see this.</p>
 </body>
 </html>

@@ -39,10 +39,9 @@ public class DemoApplication {
     }
 
     @RequestMapping("/admin")
-    @PreAuthorize("hasRole('ADMIN')")    // only users that have this role
-    @ResponseBody
+    @PreAuthorize("hasRole('ADMIN')")    // only users that have th
     public String admin() {
-	    return "Admin";
+	    return "myadmin";
     }
 
 }

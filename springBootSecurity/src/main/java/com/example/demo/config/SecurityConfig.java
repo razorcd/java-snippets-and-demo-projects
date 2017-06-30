@@ -6,9 +6,17 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.security.Principal;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @RequestMapping("/principal")
+    public Principal getPrincipal(Principal principal) {
+        return principal;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -30,4 +38,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("admin").password("pass123").roles("ADMIN", "USER");
 
     }
+
+
 }

@@ -28,6 +28,9 @@ public class MyRestController {
     @Value("${prop}")
     String prop;
 
+    @Value("${environmentProfile}")
+    String environmentProfile;
+
     @Autowired
     MyConfigurationProperty myConfigurationProperty;
 
@@ -47,4 +50,8 @@ public class MyRestController {
         return hm;
     }
 
+    @RequestMapping(value = "/environmentProfile", produces = MediaType.TEXT_PLAIN_VALUE)
+    public String getEnvironmentProfile() {
+        return "Profile dependent prop: " + environmentProfile;
+    }
 }

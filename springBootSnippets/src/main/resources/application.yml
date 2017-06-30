@@ -1,6 +1,7 @@
 
 randomvalue: ${random.int(1,10)} # generates random number. For string see .value
 prop: property1
+environmentProfile: profile_default
 
 #    prefix: ${project.basedir}/src/main/resources/templates/
 

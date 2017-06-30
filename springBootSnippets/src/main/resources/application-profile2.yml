@@ -1,0 +1,5 @@
+
+# activate this profile using ENV vatiables:
+# export SPRING_PROFILES_ACTIVE=profile1,profile2
+
+environmentProfile: profile_2
