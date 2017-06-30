@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+    <h2>My secured page</h2>
+    <a href="/">Public page</a><br/>
+    <form th:action="@{/logout}" method="post">
+        <button class="btn btn-danger" type="submit">Logout</button>
+    </form>
+</body>
+</html>

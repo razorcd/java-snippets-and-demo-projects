@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+</head>
+<body onload="document.f.username.focus()">
+    <form name="f" th:action="@{/login}" method="post">
+        <div th:if="${param.error}">
+            <div class="alert alert-danger" th:text="Error"></div>
+        </div>
+        <div th:if="${param.info}">
+            <div class="alert alert-info" th:text="Info"></div>
+        </div>
+
+        <input class="form-control" type="text" name="username" value="" />
+        <input class="form-control" type="password" name="password" value="" />
+        <input class="submit" type="submit" value="Login" />
+    </form>
+</body>
+</html>
