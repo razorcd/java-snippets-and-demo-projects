@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.codehaus.groovy.runtime.DefaultGroovyMethods.collect;
@@ -38,7 +39,9 @@ public class MyToolDocumentController {
     }
 
     @GetMapping("/{id}")
-    public Resource<ToolDocument> getToolById(@PathVariable String id) {
+    public Resource<ToolDocument> getToolById(@PathVariable String id, @PathVariable Optional<Boolean> optionalVar) {
+        if (optionalVar.isPresent()) { System.out.println(" ! Found optional variable: "+optionalVar); }
+
         ToolDocument t = new ToolDocument();
         return new Resource<>(t,
                 BasicLinkBuilder.linkToCurrentMapping().withSelfRel(),

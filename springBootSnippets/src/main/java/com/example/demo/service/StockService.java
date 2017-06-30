@@ -3,16 +3,26 @@ package com.example.demo.service;
 import com.example.demo.persistanceSql.StockEntity;
 import com.example.demo.persistanceSql.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionInterceptor;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 
 @Service
+//@Scope(BeanDefinition.SCOPE_PROTOTYPE)   // each Bean autowiring is a new instance of this class
+//@Scope(value = WebApplicationContext.SCOPE_REQUEST,
+//        proxyMode = ScopedProxyMode.TARGET_CLASS)   // Bean is a different instance for each Request
+//@Scope(value = WebApplicationContext.SCOPE_SESSION,
+//        proxyMode = ScopedProxyMode.TARGET_CLASS)   // Bean is a different instance for each Session. (for session, bean must be serializable!)
+//@Scope("websocket")   // Bean is different for each websocket 
 @Transactional
 //@ConditionalOnProperty(name = "myCustom.stockservice", havingValue = "yes")   //  create `StockService` Bean only if `stockservice` property is set with `yes` value
 public class StockService {
