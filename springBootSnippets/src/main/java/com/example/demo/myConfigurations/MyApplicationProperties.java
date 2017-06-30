@@ -1,12 +1,14 @@
 package com.example.demo.myConfigurations;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.util.List;
 
 @Component
+@Primary   //  if multiple beans are defined with this name (e.g. Interface beans)  then only this one will be created
 @ConfigurationProperties(prefix = "myCustom")
 public class MyApplicationProperties {
 

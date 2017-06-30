@@ -29,8 +29,24 @@ public class MyRestController {
     @Value("${prop}")
     String prop;
 
+    @Value("${missingprop:defaultMissingPropValue}")   // default value for the prop if it is not defined
+//    @Value("${missingprop:${otherPtop:andDeeperDefaultVal}}")
+//    @Value("#{myApplicationProperties.testProperties}") // data from other bean
+//    @Value("#{myApplicationProperties.data.charAt(5)}") // data from other bean#methods
+//    @Value("#{environment['java.home']}") // data from environment variables
+//    @Value("#{(1+1>4) ? 'yes' : 'no'}")  // with expressions
+//    @Value("#{'abcd' matches '[a-zA-Z0-9\\s]+'}")  // regex
+//    @Value("#{{1,2,3,4}}")   // an array if type is an array also
+//    @Value("#{{1,2,3,4}.?[#this > 2]}")   // a filtered array (only elements greater than 2
+//    @Value("#{{1,2,3,4}.^[#this > 2]}")   // only First element of a filtered array (only elements greater than 2
+//    @Value("#{{1,2,3,4}.$[#this > 2]}")   // only Last element of a filtered array (only elements greater than 2
+//    @Value("#{{1,2,3,4}.![#this > 2]}")   // projected filtered array. Result e.g.: {false, false, true, true}
+//    @Value("#{{'key':'value', 'key2':'value2'}}")   // a map if type is a map also
+    String missingProp;
+
     @Value("${environmentProfile}")
     String environmentProfile;
+
 
     @Autowired
     MyConfigurationProperty myConfigurationProperty;
@@ -51,6 +67,7 @@ public class MyRestController {
         hm.put("randomPropValue", randomPropValue);
         hm.put("profileMessage", profileMessage);
         hm.put("prop", prop);
+        hm.put("missingProp", missingProp);
         hm.put("property", myConfigurationProperty.getProperty());
         hm.put("applicationArguments", Arrays.stream(applicationArguments.getSourceArgs()).collect(Collectors.toList()).toString());
         return hm;
