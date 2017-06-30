@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.myConfigurations.MyApplicationProperties;
 import com.example.demo.myConfigurations.MyConfigurationProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -37,6 +38,11 @@ public class MyRestController {
     @Autowired
     ApplicationArguments applicationArguments;  //start app command line arguments
 
+    @Autowired
+    MyApplicationProperties myApplicationProperties;  //  my application properties defined with a class and populates by application.yml
+
+
+
     @RequestMapping(value = "/data", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 //    @GetMapping(value = "/data", produces = "application/json")
     @ResponseBody
@@ -53,5 +59,10 @@ public class MyRestController {
     @RequestMapping(value = "/environmentProfile", produces = MediaType.TEXT_PLAIN_VALUE)
     public String getEnvironmentProfile() {
         return "Profile dependent prop: " + environmentProfile;
+    }
+
+    @RequestMapping(value = "/myapplicationproperties")
+    public String myApplicationProperties() {
+        return myApplicationProperties.toString();
     }
 }

@@ -3,12 +3,27 @@ randomvalue: ${random.int(1,10)} # generates random number. For string see .valu
 prop: property1
 environmentProfile: profile_default
 
+
+
 #    prefix: ${project.basedir}/src/main/resources/templates/
 
 my:
   config:
     property: property1
   message: message1
+
+
+
+# Custom application properties with autocomplete. Defined in MyApplicationProperties class.
+myCustom:
+  data: some data
+  fraction: 2.2
+  urls[0]: http://www.u0.com
+  urls[1]: http://www.u1.com
+  urls[2]: http://www.u2.com
+  test-properties:
+    other-data: other data
+
 
 
 server:

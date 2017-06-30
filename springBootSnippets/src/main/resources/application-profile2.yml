@@ -1,5 +1,9 @@
 
 # activate this profile using ENV vatiables:
 # export SPRING_PROFILES_ACTIVE=profile1,profile2
+# or with java args:
+# java -jar file.jar --spring.profiles.active=profile1,profile2
+# java -Dspring.profiles.active=profile1,profile2 -jar file.jar
+
 
 environmentProfile: profile_2
