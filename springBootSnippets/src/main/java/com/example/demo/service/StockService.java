@@ -22,7 +22,7 @@ import java.util.List;
 //        proxyMode = ScopedProxyMode.TARGET_CLASS)   // Bean is a different instance for each Request
 //@Scope(value = WebApplicationContext.SCOPE_SESSION,
 //        proxyMode = ScopedProxyMode.TARGET_CLASS)   // Bean is a different instance for each Session. (for session, bean must be serializable!)
-//@Scope("websocket")   // Bean is different for each websocket 
+//@Scope("websocket")   // Bean is different for each websocket
 @Transactional
 //@ConditionalOnProperty(name = "myCustom.stockservice", havingValue = "yes")   //  create `StockService` Bean only if `stockservice` property is set with `yes` value
 public class StockService {
