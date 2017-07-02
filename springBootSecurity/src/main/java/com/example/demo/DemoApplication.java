@@ -11,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,6 +28,10 @@ public class DemoApplication {
 
 	@Autowired
     ClientRepository clientRepository;
+
+	@Autowired
+    PasswordEncoder passwordEncoder;
+
 
 	@RequestMapping("/")
     public String myPublic() {
@@ -77,7 +82,7 @@ public class DemoApplication {
 	    ClientEntity clientEntity = clientRepository.findByEmail("user@example.com");
 
 	    // set AuthenticationToken to the SecurityContext  (this will LOGIN a user)
-	    Authentication auth = new UsernamePasswordAuthenticationToken(clientEntity, "uuu", clientEntity.getAuthorities());  // user / password is being checked
+	    Authentication auth = new UsernamePasswordAuthenticationToken(clientEntity, null, clientEntity.getAuthorities());  // user / password is being checked
 	    SecurityContextHolder.getContext().setAuthentication(auth);
 
 	    return "redirect:/";

@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
@@ -17,6 +18,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     ClientRepository repo;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     // Custom Authentication called when User tries to LOGIN
     // this will be called by the AuthenticationFilter
@@ -38,7 +41,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         // check user and password and other matching fields
         if (!Optional.ofNullable(clientEntity).isPresent() ||
                 token.getAge() != clientEntity.getAge() ||   // authenticate only if user login form provides correct `age` value
-                !clientEntity.getPassword().equalsIgnoreCase(token.getCredentials().toString())) {
+//                !clientEntity.getPassword().equalsIgnoreCase(token.getCredentials().toString()) // plain text
+                !passwordEncoder.matches(token.getCredentials().toString(), clientEntity.getPassword())  // using encoder
+           ) {
             throw new BadCredentialsException("Invalid credentials.");
         }
 
