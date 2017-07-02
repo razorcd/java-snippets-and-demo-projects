@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests().antMatchers(HttpMethod.GET, "/", "/anonymous", "/logMeInAsUser", "/login").hasRole("ANONYMOUS")  // or .hasAuthority("ANONYMOUS") or .hasAnyRole("ROLE1", "ROLE2"...)
             .and()
-                .authorizeRequests().antMatchers("/me", "/me2").permitAll()  // .access("principal.username == 'user@example.com'")  // strict condition
+                .authorizeRequests().antMatchers("/me", "/me2", "/prefilter", "/postfilter").permitAll()  // .access("principal.username == 'user@example.com'")  // strict condition
             .and()
                 .authorizeRequests().anyRequest().authenticated()
 //            .and()

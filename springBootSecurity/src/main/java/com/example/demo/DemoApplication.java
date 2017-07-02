@@ -9,7 +9,9 @@ import org.springframework.context.annotation.Role;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.access.prepost.PreFilter;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.core.Authentication;
@@ -18,12 +20,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 //@EnableWebSecurity
@@ -134,4 +135,24 @@ public class DemoApplication {
 
 	    return "redirect:/";
     }
+
+
+    @RequestMapping("/prefilter")
+    @PreFilter("filterObject > 3")    // filter the method argument List
+    @ResponseBody
+    public String prefilter(@RequestParam List<Integer> numbers) {
+	    return "Filtered result: " + numbers.toString();
+    }
+
+    @RequestMapping("/postfilter")
+    @PostFilter("filterObject > 3")  // filter the returned List
+    @ResponseBody
+    public List<Integer> postfilter() {
+	    List<Integer> numbers = new ArrayList<Integer>(){{
+	        add(1); add(2); add(3); add(4); add(5); add(6);
+	    }};
+        return numbers;
+    }
+
+
 }
