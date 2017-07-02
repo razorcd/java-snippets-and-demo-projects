@@ -22,8 +22,14 @@
     <a href="/mysecured">Secured page</a><br/>
     <a href="/anonymous">Anonymous page</a><br/>
     <a href="/me">Me page</a><br/>
+    <a href="/me2">Me2 page</a><br/>
     <a href="/logMeInAsUser">logMeInAsUser page</a><br/>
 
-    <p sec:authorize="hasRole('ADMIN')">Only admin users can see this line.</p>
+    <a href="/client/1">User id: 1  page</a><br/>
+    <a href="/client/2">User id: 2  page</a><br/>
+
+
+    <p sec:authorize="hasRole('ADMIN')">Only admin users can see this line. 1</p>
+    <p>isAdmin: <span th:text="${isAdmin}">...</span></p>
 </body>
 </html>

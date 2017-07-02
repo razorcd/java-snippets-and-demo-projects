@@ -3,6 +3,7 @@ package com.example.demo.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.ForwardAuthenticationFailureHandler;
@@ -35,9 +36,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests().antMatchers(HttpMethod.GET, "/", "/anonymous", "/me", "/logMeInAsUser", "/login").hasRole("ANONYMOUS")
+                .authorizeRequests().antMatchers(HttpMethod.GET, "/", "/anonymous", "/logMeInAsUser", "/login").hasRole("ANONYMOUS")  // or .hasAuthority("ANONYMOUS") or .hasAnyRole("ROLE1", "ROLE2"...)
             .and()
-                .authorizeRequests().antMatchers("/h2/*").permitAll()
+                .authorizeRequests().antMatchers("/me", "/me2").permitAll()  // .access("principal.username == 'user@example.com'")  // strict condition
             .and()
                 .authorizeRequests().anyRequest().authenticated()
 //            .and()
