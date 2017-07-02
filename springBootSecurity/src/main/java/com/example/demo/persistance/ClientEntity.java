@@ -4,21 +4,45 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
-public class ClientEntity implements UserDetails{
+@Entity
+@Table(name = "clients")
+public class ClientEntity implements UserDetails {
 
+    @Id
+    private int id;
     private String email;
     private String encryptedPassword;
-    private String[] roles;
     private int age;
+    private boolean enabled;
 
-    public ClientEntity(String email, String encryptedPassword, String[] roles, int age) {
+    @OneToMany(mappedBy = "client_id" ,cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<AuthorityEntity> authorityEntities;
+
+    public ClientEntity() {
+    }
+
+    public ClientEntity(String email, String encryptedPassword, int age, boolean enabled, List<AuthorityEntity> authorityEntities) {
         this.email = email;
         this.encryptedPassword = encryptedPassword;
-        this.roles = roles;
         this.age = age;
+        this.enabled = enabled;
+        this.authorityEntities = authorityEntities;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -37,26 +61,43 @@ public class ClientEntity implements UserDetails{
         this.encryptedPassword = encryptedPassword;
     }
 
-    public String[] getRoles() {
-        return roles;
+    public int getAge() {
+        return age;
     }
 
-    public void setRoles(String[] roles) {
-        this.roles = roles;
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public List<AuthorityEntity> getAuthorityEntities() {
+        return authorityEntities;
+    }
+
+    public void setAuthorityEntities(List<AuthorityEntity> authorityEntities) {
+        this.authorityEntities = authorityEntities;
     }
 
     @Override
     public String toString() {
         return "ClientEntity{" +
-                "email='" + email + '\'' +
-                ", encryptedPassword='" + "[HIDDEN]" + '\'' +
-                ", roles=" + Arrays.toString(roles) +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", encryptedPassword='" + encryptedPassword + '\'' +
+                ", age=" + age +
+                ", enabled=" + enabled +
+                ", authorityEntities=" + authorityEntities +
                 '}';
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthorityUtils.createAuthorityList(roles);
+        // why is this `map` so slow:
+        String[] array = getAuthorityEntities().stream().map(a -> a.getAuthority()).toArray(String[]::new);
+        return AuthorityUtils.createAuthorityList(array);
     }
 
     @Override
@@ -87,13 +128,5 @@ public class ClientEntity implements UserDetails{
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 }

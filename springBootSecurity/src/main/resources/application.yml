@@ -1,1 +1,15 @@
 debug: true
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/security_demo
+    username: root
+    password: pass123
+    initialize: true
+    schema: classpath:schema.sql
+    name: spring_demo
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true

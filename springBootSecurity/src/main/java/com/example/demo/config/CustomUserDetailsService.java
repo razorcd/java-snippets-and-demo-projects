@@ -1,11 +1,8 @@
 package com.example.demo.config;
 
-import com.example.demo.persistance.ClientEntity;
 import com.example.demo.persistance.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -27,6 +24,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 //        return new User(clientEntity.getEmail(), clientEntity.getEncryptedPassword(), AuthorityUtils.createAuthorityList(clientEntity.getRoles()));
 
         // if ClientEntity implements UserDetails object then you can just return it
-        return clientRepository.getClientByEmail(username);
+        return clientRepository.findByEmail(username);
     }
 }

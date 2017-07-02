@@ -37,12 +37,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests().antMatchers(HttpMethod.GET, "/", "/anonymous", "/me", "/logMeInAsUser", "/login").hasRole("ANONYMOUS")
             .and()
+                .authorizeRequests().antMatchers("/h2/*").permitAll()
+            .and()
                 .authorizeRequests().anyRequest().authenticated()
 //            .and()
 //                .formLogin().loginPage("/login").successForwardUrl("/").permitAll()   //because we are using our own filter
             .and()
                 .addFilterBefore(authenticationFilter(), BasicAuthenticationFilter.class)
-                .logout().permitAll();
+                .logout().permitAll()
+            .and()
+                .csrf().disable();
     }
 
 //    @Autowired

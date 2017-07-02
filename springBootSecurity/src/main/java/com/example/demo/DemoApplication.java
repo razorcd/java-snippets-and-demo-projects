@@ -74,7 +74,7 @@ public class DemoApplication {
 
     @RequestMapping("/logMeInAsUser")
     public String logMeInAsUser() {
-	    ClientEntity clientEntity = clientRepository.getClientByEmail("user@example.com");
+	    ClientEntity clientEntity = clientRepository.findByEmail("user@example.com");
 
 	    // set AuthenticationToken to the SecurityContext  (this will LOGIN a user)
 	    Authentication auth = new UsernamePasswordAuthenticationToken(clientEntity, "uuu", clientEntity.getAuthorities());  // user / password is being checked
