@@ -9,12 +9,21 @@
 <body>
     <div>Logged in as: <p sec:authentication="principal"></p></div>
 
+    <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+        <button class="btn btn-danger" type="submit">Logout</button>
+    </form>
+
+    <br/>
+    <a sec:authorize="!isAuthenticated()" href="/login">login page</a><br/>
+    <br/>
+
     <a href="/">Public page</a><br/>
     <a href="/admin">Admin page</a><br/>
     <a href="/mysecured">Secured page</a><br/>
     <a href="/anonymous">Anonymous page</a><br/>
+    <a href="/me">Me page</a><br/>
+    <a href="/logMeInAsUser">logMeInAsUser page</a><br/>
 
-
-    <p sec:authorize="hasRole('ADMIN')">Only admin users can see this.</p>
+    <p sec:authorize="hasRole('ADMIN')">Only admin users can see this line.</p>
 </body>
 </html>
