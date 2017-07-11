@@ -1,10 +1,13 @@
 package com.example.demo;
 
+import com.example.demo.config.SecurityConfig;
 import com.example.demo.persistance.ClientEntity;
 import com.example.demo.persistance.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Role;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.annotation.Secured;
@@ -23,11 +26,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
 //@EnableWebSecurity
+@Import(SecurityConfig.class)
 @Controller
 @EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true, securedEnabled = true) // enables: @PreAuthorize @PostAuthorize,   @RolesAllowed,    @Secured
 public class DemoApplication {
@@ -120,6 +125,7 @@ public class DemoApplication {
     @RequestMapping(value = "/me2", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public ClientEntity me2(Authentication authentication) {
+//   public ClientEntity me2(HttpSession session) {    // or inject the current Session object
         return (ClientEntity) authentication.getPrincipal();
     }
 

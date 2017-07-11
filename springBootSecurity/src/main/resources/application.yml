@@ -20,3 +20,4 @@ server:
     key-store-password: password
     client-auth: want
     protocol: TLSv1
+

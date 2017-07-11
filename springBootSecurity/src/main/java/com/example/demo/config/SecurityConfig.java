@@ -6,6 +6,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.access.channel.ChannelProcessor;
 import org.springframework.security.web.authentication.ForwardAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
@@ -39,7 +40,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .requiresChannel().antMatchers("*").requiresSecure()  //  requires HTTPS with generated KEY in keystore (see application.yml)
             .and()
-                .sessionManagement().sessionFixation().none() // so when switching between HTTP and HTTPS , Spring does not recreate the Session object(new key)
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+            .and()
+                .sessionManagement().sessionFixation().none() // so when switching between HTTP and HTTPS or user tries to login again. Here Spring does not recreate the Session object (no new key)
             .and()
                 .authorizeRequests().antMatchers(HttpMethod.GET, "/", "/anonymous", "/logMeInAsUser", "/login").hasRole("ANONYMOUS")  // or .hasAuthority("ANONYMOUS") or .hasAnyRole("ROLE1", "ROLE2"...)
             .and()
@@ -53,6 +56,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().permitAll()
             .and()
                 .csrf().disable();
+
+
+            //remember me configuration
+            http.rememberMe()
+                    .rememberMeCookieName("remember-me-cookie-name")
+            .and()
+                 .rememberMe()
+                    .key("rem-me-key")
+                    .rememberMeParameter("remember-me-param")
+                    .rememberMeCookieName("my-remember-me")
+                    .tokenValiditySeconds(86400);
     }
 
 //    @Autowired
