@@ -2,6 +2,7 @@ package main.java;
 
 import main.java.classes.ValueObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ArraysDemo {
@@ -58,5 +59,11 @@ public class ArraysDemo {
         values.toArray(regularValues);   // regularValues will have the new values
         System.out.println("Copy to regular array, elem 2: " + regularValues[2]);
 
+
+        //autoboxing and unboxing
+        Integer a = 55; //compiler does: Integer.valueOf(55)   or   new Integer(55)
+        int b = a; // compiler does: a.intValue()
+        ArrayList<Integer> aaa = new ArrayList<>(); // because `ArrayList<Integer>` does not work
+        aaa.add(55);
     }
 }
