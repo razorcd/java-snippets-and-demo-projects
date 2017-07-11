@@ -6,6 +6,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.access.channel.ChannelProcessor;
 import org.springframework.security.web.authentication.ForwardAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -36,6 +37,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .requiresChannel().antMatchers("*").requiresSecure()  //  requires HTTPS with generated KEY in keystore (see application.yml)
+            .and()
+                .sessionManagement().sessionFixation().none() // so when switching between HTTP and HTTPS , Spring does not recreate the Session object(new key)
+            .and()
                 .authorizeRequests().antMatchers(HttpMethod.GET, "/", "/anonymous", "/logMeInAsUser", "/login").hasRole("ANONYMOUS")  // or .hasAuthority("ANONYMOUS") or .hasAnyRole("ROLE1", "ROLE2"...)
             .and()
                 .authorizeRequests().antMatchers("/me", "/me2", "/prefilter", "/postfilter").permitAll()  // .access("principal.username == 'user@example.com'")  // strict condition

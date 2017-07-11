@@ -13,3 +13,10 @@ spring:
     database: mysql
     database-platform: org.hibernate.dialect.MySQLDialect
     show-sql: true
+server:
+  ssl:
+    enabled: true   # config in SecurityConfig is also needed.
+    key-store: keystore.jks    # public key for TLS. Generate it via README.md
+    key-store-password: password
+    client-auth: want
+    protocol: TLSv1
