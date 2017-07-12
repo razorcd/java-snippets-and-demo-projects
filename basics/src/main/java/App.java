@@ -38,7 +38,7 @@ public class App {
             ColorPicker.pickColor().paint();
 
         //arrays
-        ArraysDemo.run();
+        ListsDemo.run();
 
         //console input
 //        new ConsoleInput().run();

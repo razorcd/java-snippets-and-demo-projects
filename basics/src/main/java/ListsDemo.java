@@ -4,8 +4,10 @@ import main.java.classes.ValueObject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 
-public class ArraysDemo {
+public class ListsDemo {
 
     public static void run() {
 
@@ -19,7 +21,7 @@ public class ArraysDemo {
         System.out.println(myInt2[1]);
 
 
-        //ArrayList
+        //ArrayList    (inside, for each element, it stores: Index, Address, Value||Reference)
         ArrayList<String> words = new ArrayList<>();
         words.add("one"); words.add("two"); words.add("three"); words.add(null);
 
@@ -65,5 +67,25 @@ public class ArraysDemo {
         int b = a; // compiler does: a.intValue()
         ArrayList<Integer> aaa = new ArrayList<>(); // because `ArrayList<Integer>` does not work
         aaa.add(55);
+
+
+
+
+        // Linked Lists (inside, for each element, it stores: Index, Address, Value||Reference)
+        LinkedList<Double> ll = new LinkedList<>() ;
+        ll.add(1.5d); ll.add(13.5d); ll.add(4.3d);
+        System.out.println("Linked list - first elem: " + ll.getFirst());
+        System.out.println("Linked list - last elem: " + ll.getLast());
+        System.out.println("Linked list - peek (current position): " + ll.peek());
+        System.out.println("Linked list - pop (removes first): " + ll.pop());
+        System.out.println("Linked list: " + ll);
+
+        // Iterate over Linked Lists
+        Iterator<Double> iterator = ll.iterator();
+        while(iterator.hasNext()) { System.out.print(iterator.next() + " "); }
+        System.out.println();
+        for (Double d : ll) { System.out.print(d + " "); }
+        System.out.println();
+
     }
 }
