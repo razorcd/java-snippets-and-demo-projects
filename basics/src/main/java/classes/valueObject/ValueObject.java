@@ -1,8 +1,8 @@
-package main.java.classes;
+package main.java.classes.valueObject;
 
 import java.util.Objects;
 
-public class ValueObject<T> {
+public class ValueObject<T> implements IValueObject<T> {
     private T value;
 
     public ValueObject() {
@@ -12,10 +12,12 @@ public class ValueObject<T> {
         this.value = value;
     }
 
+    @Override
     public T getValue() {
         return value;
     }
 
+    @Override
     public void setValue(T value) {
         this.value = value;
     }

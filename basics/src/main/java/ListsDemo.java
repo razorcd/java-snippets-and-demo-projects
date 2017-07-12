@@ -1,8 +1,7 @@
 package main.java;
 
-import main.java.classes.ValueObject;
+import main.java.classes.valueObject.ValueObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
