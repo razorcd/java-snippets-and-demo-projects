@@ -5,6 +5,8 @@ import main.java.classes.ClassOneSub;
 import main.java.classes.ClassTwo;
 import main.java.classes.InnerClasses.House;
 import main.java.classes.Polymorphism.ColorPicker;
+import main.java.classes.abstractClasses.Animal;
+import main.java.classes.abstractClasses.Dog;
 import main.java.classes.valueObject.IValueObject;
 import main.java.classes.valueObject.ValueObject;
 import main.java.interfaces.Circle;
@@ -84,7 +86,7 @@ public class App {
             h.methodWithClass();
 
 
-            // 6. anonymous class.   Instantiates based on an interface and defines required methods.    Sends instance of anonymous class to method call.
+            // 6. anonymous class.   Instantiates based on an interface and defines the required methods.    Sends instance of anonymous class to method call. Or can be assigned to variable, see below.
             h.sayMethodWithAnonymousClass(new IValueObject<String>() {
                 String value;
                 @Override
@@ -99,8 +101,21 @@ public class App {
             });
 
 
+        // ABSTRACT CLASSES
+            Animal dog = new Dog("Rita");
+            dog.say();
+            Dog dog1 = (Dog) dog;
+            dog1.sayMore();
 
-
+//            Animal animal = new Animal("custom name");  // Abstract classes can NOT be Instantiated. Unless defining Anonymous class:
+            // Abstract class with Anonymous class:
+            Animal customAnimal = new Animal("custom name") {
+                @Override
+                public void say() {
+                    System.out.println("#$#$%^ @$@#");
+                }
+            };
+            customAnimal.say();
 
         //arrays
 //        ListsDemo.run();

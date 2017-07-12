@@ -9,7 +9,7 @@ import java.util.List;
 /** - private and public Instance classes
  *  - private and public Static classes
  *  - inside Method classes (defined inside methods)
- *  - Anonymous classes (defined as argument at method call)
+ *  - Anonymous classes (defined as argument at method call or at variable assignment)
  */
 public class House {
 
@@ -101,7 +101,7 @@ public class House {
     }
 
 
-    // 6. Anonymous classes   (send Instance of a Class Defined at method Invocation).
+    // 6. Anonymous classes   (send Instance of a Class Defined at method Invocation or assign to a variable).
     //    (good when needing to define a class instance only once, or we have to many implementations of an Interface that we use only once)
     /**  Use as:
          h.sayMethodWithAnonymousClass(new IValueObject<String>() {
@@ -117,6 +117,10 @@ public class House {
                 this.value = value;
              }
          });
+
+        or
+
+         IValueObject<String> vo = new IValueObject<String>() { ... }
      */
     public void sayMethodWithAnonymousClass(IValueObject v) {
         v.setValue("AnonymousClassValue");
