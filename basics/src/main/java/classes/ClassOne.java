@@ -1,6 +1,18 @@
 package main.java.classes;
 
+// Top Class must be:
+// public class ClassOne
+// class ClassOne  =  package-private.  Can only be accessible from classes within `main.java.classes.**`
 public class ClassOne {
+
+    // ! Static variables Share the Class Scope between all instances
+    private static String privateStaticVar;
+    protected static String protectedStaticVar;
+    public static String publicStaticVar;
+
+    private String privateVar;  // visible only withing  This Class  and  Inner Classes
+    protected String protectedVar;  //  visible in    Subclasses from any Package    and   Classes Inside Same Package
+    public String publicVar;  // visible from everywhere
 
     private String foo;
     private int counter;
@@ -21,8 +33,8 @@ public class ClassOne {
         this.amount = amount;
     }
 
-
-    public void logSomething() {
+    // final methods can not be overridden
+    public final void logSomething() {
         System.out.println("Logging something from " + this.getClass());
     }
 

@@ -3,12 +3,12 @@ package main.java;
 import main.java.classes.ClassOne;
 import main.java.classes.ClassOneSub;
 import main.java.classes.ClassTwo;
-import main.java.classes.InnerClasses.House;
-import main.java.classes.Polymorphism.ColorPicker;
-import main.java.classes.abstractClasses.Animal;
-import main.java.classes.abstractClasses.Dog;
-import main.java.classes.valueObject.IValueObject;
-import main.java.classes.valueObject.ValueObject;
+import main.java.classes.StaticInitialization;
+import main.java.classes.inner_classes.House;
+import main.java.classes.polymorphism.ColorPicker;
+import main.java.classes.abstract_classes.Animal;
+import main.java.classes.abstract_classes.Dog;
+import main.java.classes.value_object.IValueObject;
 import main.java.interfaces.Circle;
 import main.java.interfaces.IShape;
 import main.java.interfaces.Square;
@@ -16,11 +16,11 @@ import main.java.interfaces.Square;
 public class App {
 
     public static void main(String[] args) {
-//        PrimitiveTypes.run();
-//        Constant.run();
-//        BitwiseOperators.run();
+        PrimitiveTypes.run();
+        Constant.run();
+        BitwiseOperators.run();
 //        AssertCommand.run();
-//        Flow.run();
+        Flow.run();
 
         // CLASSES
             ClassOne c1 = new ClassOne();
@@ -116,6 +116,15 @@ public class App {
                 }
             };
             customAnimal.say();
+
+        // Static Initialization
+        System.out.println(StaticInitialization.staticVar);  // invokes static initializer if called first
+        StaticInitialization.someStaticMethod();  // invokes static initializer if called first
+        StaticInitialization s = new StaticInitialization(); // invokes static initializer if called first
+        s.someMethod();
+
+        //Generics
+//        Generics.run();
 
         //arrays
 //        ListsDemo.run();

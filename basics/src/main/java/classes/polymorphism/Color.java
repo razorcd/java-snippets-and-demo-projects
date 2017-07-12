@@ -1,4 +1,4 @@
-package main.java.classes.Polymorphism;
+package main.java.classes.polymorphism;
 
 // Color can take different forms: Red, Blue, ...
 public class Color {

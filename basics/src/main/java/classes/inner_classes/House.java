@@ -1,6 +1,6 @@
-package main.java.classes.InnerClasses;
+package main.java.classes.inner_classes;
 
-import main.java.classes.valueObject.IValueObject;
+import main.java.classes.value_object.IValueObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,7 @@ public class House {
 
     private List<RoomPriv> roomPrivs = new ArrayList<>();
     private int area;
+    private String foo = "foooooo";
 
     public House(int area) {
         this.area = area;
@@ -41,6 +42,9 @@ public class House {
 
         public RoomPub(int area) {
             this.area = area;
+            String mainClassFoo1 = foo;   // has access to parent class scope
+            String mainClassFoo2 = House.this.foo;   // has access to parent class scope
+            System.out.println("Main class properties: " + mainClassFoo1 + " " + mainClassFoo2);
         }
 
     }

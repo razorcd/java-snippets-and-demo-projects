@@ -1,8 +1,8 @@
-package main.java.classes.valueObject;
+package main.java.classes.value_object;
 
 import java.util.Objects;
 
-public class ValueObject<T> implements IValueObject<T> {
+public class ValueObject<T> implements IValueObject<T>, Comparable<T> {
     private T value;
 
     public ValueObject() {
@@ -11,6 +11,13 @@ public class ValueObject<T> implements IValueObject<T> {
     public ValueObject(T value) {
         this.value = value;
     }
+
+
+    @Override
+    public int compareTo(T o) {
+        return this.toString().compareTo(o.toString());   // dummy String comparison. It should return  -1 if o<this , 0 if o==this, 1 if o>this
+    }
+
 
     @Override
     public T getValue() {

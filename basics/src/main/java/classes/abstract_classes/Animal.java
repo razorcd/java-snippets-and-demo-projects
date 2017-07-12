@@ -1,4 +1,4 @@
-package main.java.classes.abstractClasses;
+package main.java.classes.abstract_classes;
 
 
 import java.io.Serializable;
@@ -11,12 +11,14 @@ import java.io.Serializable;
  * - define public/static on abstract methods
  *
  * ! myClass is a {Abstract class here}.  myClass can {Interface here}.    (Dog is an Animal. Dog can implement Movable)
- * ! Abstract classes can implement interfaces
+ * ! Abstract classes can also implement interfaces.
+ * ! Abstract classes are not instantiable
  */
 public abstract class Animal implements Serializable {
-    private String name;
+    private String name;   // Subclasses will NOT have access to this Private field
+    protected String name2;  // Subclasses will have access to this Protected field
 
-    public Animal(String name) {
+    protected Animal(String name) {  // protected constructor makes more sense in an abstract class
         this.name = name;
     }
 

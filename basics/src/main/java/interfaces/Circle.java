@@ -2,6 +2,7 @@ package main.java.interfaces;
 
 public class Circle implements IShape, IDrawable {
 
+    final double PI_VALUE = Math.PI;
     int radius;
 
     public Circle(int radius) {
@@ -17,7 +18,7 @@ public class Circle implements IShape, IDrawable {
 
     @Override
     public double getArea() {
-        return Math.PI*(Math.pow(radius,2));
+        return PI_VALUE *(Math.pow(radius,2));
     }
 
     @Override
@@ -33,3 +34,4 @@ public class Circle implements IShape, IDrawable {
         this.radius = radius;
     }
 }
+

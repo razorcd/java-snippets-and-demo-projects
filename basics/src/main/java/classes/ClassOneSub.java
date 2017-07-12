@@ -10,6 +10,15 @@ public class ClassOneSub extends ClassOne {
     public ClassOneSub(String extraField, int extraCounter) {
         this.extraField = extraField;
         this.extraCounter = extraCounter;
+
+//        this.privateVar = "";   // not accessible here
+        this.protectedVar = "";  //  visible in Subclasses from any Package   and   Inside Same Package
+        this.publicVar = "";  // visible from everywhere
+
+//        ClassOne.privateStaticVar = "";   // not accessible here
+        ClassOne.protectedStaticVar = ""; //  visible in Subclasses from any Package   and   Inside Same Package
+        ClassOne.publicStaticVar = "";  // visible from everywhere
+
     }
 
     public ClassOneSub(String foo, String extraField, int extraCounter) {

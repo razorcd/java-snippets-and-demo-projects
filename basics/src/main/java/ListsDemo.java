@@ -1,6 +1,9 @@
 package main.java;
 
-import main.java.classes.valueObject.ValueObject;
+import main.java.classes.ClassOne;
+import main.java.classes.ClassOneSub;
+import main.java.classes.ClassOneSubSub;
+import main.java.classes.value_object.ValueObject;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -64,9 +67,8 @@ public class ListsDemo {
         //autoboxing and unboxing
         Integer a = 55; //compiler does: Integer.valueOf(55)   or   new Integer(55)
         int b = a; // compiler does: a.intValue()
-        ArrayList<Integer> aaa = new ArrayList<>(); // because `ArrayList<Integer>` does not work
+        ArrayList<Integer> aaa = new ArrayList<>(); // because `ArrayList<int>` does not work
         aaa.add(55);
-
 
 
 
