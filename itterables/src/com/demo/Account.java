@@ -34,6 +34,7 @@ public class Account implements Comparable<Account>{
 
     @Override
     public int compareTo(Account o) {
+        if (o == null) throw new NullPointerException("(0x216) Account object can not be null.");
         return this.balance.compareTo(o.balance);
     }
 
