@@ -11,6 +11,9 @@ public class PrimitiveTypes {
         //     Primitive types
         // ########################
 
+        // ! primitive types can not be assigned `null`. Null is a reference. !
+        // If you need to also have null on primitive types then use the wrapper classes Integer, Double, Boolean, ...
+
         //int - 32 bit
         int minInt = -2_147_483_648;
         int maxInt = 2_147_483_647;
