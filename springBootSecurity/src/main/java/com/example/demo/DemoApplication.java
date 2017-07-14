@@ -58,6 +58,7 @@ public class DemoApplication {
 
 
 	@RequestMapping("/")
+    @CrossOrigin(origins = "http://localhost:4400")
     public String myPublic() {
 	    return "index";
     }
