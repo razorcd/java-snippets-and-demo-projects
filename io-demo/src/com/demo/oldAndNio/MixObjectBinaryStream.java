@@ -1,4 +1,4 @@
-package com.demo;
+package com.demo.oldAndNio;
 
 import com.demo.oldIO.MyEntity;
 
@@ -9,7 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
-public class NioObjectBynaryStream {
+public class MixObjectBinaryStream {
 
     public static void run() {
         List<MyEntity> entities = Arrays.asList(
@@ -17,8 +17,8 @@ public class NioObjectBynaryStream {
                 new MyEntity("Name2", new Date(), new BigDecimal(777), false)
         );
 
-        writeFile("nioObjectFileFile.tmp", entities);
-        List<MyEntity> newEntities = readFile("nioObjectFileFile.tmp");
+        writeFile("mixObjectFileFile.tmp", entities);
+        List<MyEntity> newEntities = readFile("mixObjectFileFile.tmp");
         System.out.println(newEntities);
     }
 

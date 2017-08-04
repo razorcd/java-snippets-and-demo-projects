@@ -1,12 +1,7 @@
 package com.demo;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Scanner;
+import com.demo.nIO.NioBinaryFiles;
+import com.demo.nIO.NioStringFiles;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,8 +11,14 @@ public class Main {
 //        DataBinaryStreams.run();
 //        ObjectBinaryStreams.run();
 
+        //  OLD and NEW IO
+//        MixStringFiles.run();
+//        MixObjectBinaryStream.run();
+
+
         // NEW IO
 //        NioStringFiles.run();
-        NioObjectBynaryStream.run();
+        NioBinaryFiles.run();
     }
+
 }

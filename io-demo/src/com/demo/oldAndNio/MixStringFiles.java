@@ -1,4 +1,4 @@
-package com.demo;
+package com.demo.oldAndNio;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,12 +8,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
 
-public class NioStringFiles {
+public class MixStringFiles {
 
     public static void run() {
 
-        writeFile("nioStringFile.tmp", "Line 1\nLine 2\nLine 3");
-        System.out.println(readFile("nioStringFile.tmp"));
+        writeFile("mixStringFile.tmp", "Line 1\nLine 2\nLine 3");
+        System.out.println(readFile("mixStringFile.tmp"));
 //        System.out.println(readFileWithScanner("nioStringFile.tmp"));
 
     }
