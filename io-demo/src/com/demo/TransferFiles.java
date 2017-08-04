@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
 
-public class CopyFiles {
+public class TransferFiles {
     public static void run() {
 
         try (RandomAccessFile fromRa = new RandomAccessFile("someBinaryFile.dat", "r");
