@@ -3,6 +3,10 @@ package com.demo;
 import com.demo.nIO.NioBinaryFiles;
 import com.demo.nIO.NioStringFiles;
 
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.channels.FileChannel;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -18,7 +22,10 @@ public class Main {
 
         // NEW IO
 //        NioStringFiles.run();
-        NioBinaryFiles.run();
+//        NioBinaryFiles.run();
+
+        CopyFiles.run();
     }
+
 
 }
