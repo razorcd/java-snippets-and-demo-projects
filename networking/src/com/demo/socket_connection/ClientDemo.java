@@ -1,5 +1,7 @@
 package com.demo.socket_connection;
 
+import sun.net.www.http.HttpClient;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
