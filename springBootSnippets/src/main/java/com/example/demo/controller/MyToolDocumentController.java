@@ -7,6 +7,7 @@ import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.mvc.BasicLinkBuilder;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 @RequestMapping(path = "/tools", produces = MediaTypes.HAL_JSON_VALUE)
 public class MyToolDocumentController {
 
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public Resources<Resource<ToolDocument>> getTools() {
         Collection<ToolDocument> tools = new ArrayList<>();
@@ -38,7 +39,7 @@ public class MyToolDocumentController {
                 BasicLinkBuilder.linkToCurrentMapping().withSelfRel());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Resource<ToolDocument> getToolById(@PathVariable String id, @PathVariable Optional<Boolean> optionalVar) {
         if (optionalVar.isPresent()) { System.out.println(" ! Found optional variable: "+optionalVar); }
 

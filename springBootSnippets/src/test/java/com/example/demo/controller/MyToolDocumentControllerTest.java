@@ -38,7 +38,7 @@ public class MyToolDocumentControllerTest {
         //create toolDocument requests here
 
         String response = mockMvc.perform(MockMvcRequestBuilders.get("/tools"))
-                .andExpect(content().contentTypeCompatibleWith("application/hal+json;charset=UTF8"))
+                .andExpect(content().contentTypeCompatibleWith("application/json;charset=UTF8"))
 //            .andDo(print())    // prints the request. But it is printing it by default anyway.
                 .andExpect(status().is2xxSuccessful())
                 .andReturn().getResponse().getContentAsString();
@@ -54,7 +54,7 @@ public class MyToolDocumentControllerTest {
     public void getToolByIdTest() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.get("/tools/1"))
                 .andExpect(status().is2xxSuccessful())
-                .andExpect(content().contentTypeCompatibleWith("application/hal+json;charset=UTF8"))
+                .andExpect(content().contentTypeCompatibleWith("application/json;charset=UTF8"))
 //                .andDo(print())
                 .andReturn().getResponse().getContentAsString();
 

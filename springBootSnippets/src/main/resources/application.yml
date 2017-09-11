@@ -69,22 +69,16 @@ spring:
     encoding:
       force: true  # all requests are converted to UTF8 !   important
 
-
-  resources:  # static assets
-    cache-period: 3000
-    chain:
-      gzipped: true
-
-
   devtools:
     restart:
       enabled: true
     livereload:
       enabled: true
   resources:
+    cache-period: 3000
 #    static-locations: ${project.basedir}/src/main/resources/static/
-    cache-period: 0
     chain:
+      gzipped: true
       cache: false
       strategy:
 #        content:  # adds versioning to static files: mycss-69ec5f9c64e0387fd9f5e209a93a694a.css"
