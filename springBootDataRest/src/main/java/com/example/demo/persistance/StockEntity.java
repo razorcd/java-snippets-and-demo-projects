@@ -11,10 +11,10 @@ import java.io.Serializable;
 public class StockEntity implements Serializable {
 
     @Id
-    @Column(name = "stockId")
+    @Column(name = "stock_id")
     private String stockId;
 
-    @Column(name = "companyName")
+    @Column(name = "company_name")
     private String companyName;
 
     @Column(name = "symbol")
@@ -22,6 +22,16 @@ public class StockEntity implements Serializable {
 
     @Column(name = "price")
     private double price;
+
+    public StockEntity() {
+    }
+
+    public StockEntity(String stockId, String companyName, String symbol, double price) {
+        this.stockId = stockId;
+        this.companyName = companyName;
+        this.symbol = symbol;
+        this.price = price;
+    }
 
     public String getStockId() {
         return stockId;
