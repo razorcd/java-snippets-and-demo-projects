@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.myConfigurations.localTimeFactory.LocalTimeFactory;
+import com.example.demo.persistanceSql.StockEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.metrics.CounterService;
 import org.springframework.http.HttpHeaders;
@@ -15,6 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.MissingResourceException;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -86,5 +88,15 @@ public class MyController {
         return time1 + "<br/>" + time2;
     }
 
+    @RequestMapping("/throwError")
+    public void throwError() {
+        throw new MissingResourceException("errorMessageHere", StockEntity.class.getName(), "key1");
+    }
+
+    // will catch any exception in this controller
+    @ExceptionHandler(MissingResourceException.class)
+    public @ResponseBody String missingResourceExceptionHandler(Exception e) {
+        return "MissingResourceException was thrown. " + e.getMessage();
+    }
 
 }
