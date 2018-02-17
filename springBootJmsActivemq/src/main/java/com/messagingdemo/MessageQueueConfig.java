@@ -23,8 +23,8 @@ import java.util.Arrays;
 @Configuration
 public class MessageQueueConfig {
 
-    @Value("${activemq.url}")
-    private String activemqUrl;
+//    @Value("${activemq.url}")
+//    private String activemqUrl;
 
     @Bean
     public Queue stringMessagesQueue() {
@@ -37,19 +37,19 @@ public class MessageQueueConfig {
     }
 
 
-
-    @Bean
-    public ActiveMQConnectionFactory activeMQConnectionFactory() {
-        ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory();
-        activeMQConnectionFactory.setBrokerURL(activemqUrl);
-        activeMQConnectionFactory.setTrustedPackages(Arrays.asList("*")); // or specific:  "com.messagingdemo"
-        return activeMQConnectionFactory;
-    }
-
-    @Bean
-    JmsTemplate jmsTemplate() {
-        return new JmsTemplate(activeMQConnectionFactory());
-    }
+//
+//    @Bean
+//    public ActiveMQConnectionFactory activeMQConnectionFactory() {
+//        ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory();
+////        activeMQConnectionFactory.setBrokerURL(activemqUrl);
+////        activeMQConnectionFactory.setTrustedPackages(Arrays.asList("*")); // or specific:  "com.messagingdemo"
+//        return activeMQConnectionFactory;
+//    }
+//
+//    @Bean
+//    JmsTemplate jmsTemplate() {
+//        return new JmsTemplate(activeMQConnectionFactory());
+//    }
 
 
 
