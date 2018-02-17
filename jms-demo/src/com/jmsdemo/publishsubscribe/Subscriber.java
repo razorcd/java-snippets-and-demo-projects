@@ -42,7 +42,8 @@ public class Subscriber implements MessageListener {
         Topic chatTopic = new ActiveMQTopic(topicName);
 
         // Create a JMS publisher and subscriber
-        TopicSubscriber subscriber = subSession.createSubscriber(chatTopic);
+        TopicSubscriber subscriber = subSession.createSubscriber(chatTopic);    // will NOT pickup missed messages while offline
+//        TopicSubscriber subscriber = subSession.createDurableSubscriber(chatTopic, "durableSub1");   // will NOT pickup missed messages while offline
 
         // Set a JMS message listener
         subscriber.setMessageListener(this);
@@ -62,9 +63,23 @@ public class Subscriber implements MessageListener {
             TextMessage textMessage = (TextMessage) message;
             String text = textMessage.getText();
             System.out.println("\nSubscriber received message: " + message);
-        } catch (JMSException jmse) {
-            jmse.printStackTrace();
+            System.out.println("Text: " + text);
+
+            Topic replyToTopic = (Topic) message.getJMSReplyTo();
+            sendReply(replyToTopic);
+        } catch (Exception e) {  // JMSException e
+            e.printStackTrace();
         }
+    }
+
+
+    private void sendReply(Topic replyTopic) throws Exception {
+        TopicSession subSession = connection.createTopicSession(false, Session.DUPS_OK_ACKNOWLEDGE);
+        TopicPublisher publisher = subSession.createPublisher(replyTopic);
+        TextMessage replyMessage = subSession.createTextMessage("Got it !!!!");
+        System.out.println("Sending reply!");
+        publisher.publish(replyMessage);
+        // TODO: use callbacks!?
     }
 
     public static void main(String[] args) throws Exception {
