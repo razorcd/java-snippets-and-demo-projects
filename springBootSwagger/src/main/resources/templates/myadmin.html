@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+    <h2>My admin page</h2>
+    <a href="/">Public page</a><br/>
+    <form th:action="@{/logout}" method="post">
+        <button class="btn btn-danger" type="submit">Logout</button>
+    </form>
+</body>
+</html>
