@@ -9,6 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 @SpringBootApplication
 @RestController
 @Api(value="theMainApi", description="Just a demo of the general paths. Deprecated!")
@@ -38,11 +41,17 @@ public class DemoApplication {
             @ApiResponse(code = 404, message = "Not found.")
     })
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public UserDto getUser(@PathVariable("id") int id) {
+    public UserDto getUser(@NotNull @Min(3) @PathVariable("id") int id) {
         return new UserDto("name1", 11, true);
     }
 
 
+    /**
+     * Create a User with all data.
+     *
+     * @param userDto the User object
+     * @return the created User
+     */
     @ApiOperation(value = "Create a UserDto.", response = UserDto.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success."),
