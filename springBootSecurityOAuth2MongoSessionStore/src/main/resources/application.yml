@@ -1,0 +1,37 @@
+spring:
+  data:
+    mongodb:
+#      uri: mongodb://localhost/dummyDb
+      host: localhost
+      port: 27017
+      database: dummyDb
+#      username:
+#      password:
+  session:
+    store-type: mongo
+
+security:
+  oauth2:
+    client:
+      grant-type: password
+      authorized-grant-types: password
+    resource:
+      filter-order: 3
+
+
+mongo-token-store-dbname: dummyDb
+
+
+app:
+  oauth:
+    mongo-token-store-dbname: dummyDb
+    mongo-token-store-accesstoken-collection-name: access_tokens
+    mongo-token-store-refreshtoken-collection-name: refresh_tokens
+    mongo-token-store-clear-tokens-on-boot: false
+    client-id: clientId111
+    client-secret: clientSecret111
+    authorized-grant-types: password, refresh_token
+    auto-approve-scopes: read, write
+    scopes: read, write
+    access-token-validity-seconds: 6000000
+    refresh-token-validity-seconds: 3000000

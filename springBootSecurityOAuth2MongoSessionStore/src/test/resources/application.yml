@@ -1,0 +1,13 @@
+app:
+  oauth:
+    mongo-token-store-dbname: dummyDb
+    mongo-token-store-accesstoken-collection-name: access_tokens_test
+    mongo-token-store-refreshtoken-collection-name: refresh_tokens_test
+    mongo-token-store-clear-tokens-on-boot: false
+    client-id: clientId111
+    client-secret: clientSecret111
+    authorized-grant-types: password, refresh_token
+    auto-approve-scopes: read, write
+    scopes: read, write
+    access-token-validity-seconds: 6000000
+    refresh-token-validity-seconds: 3000000
