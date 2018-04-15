@@ -1,0 +1,20 @@
+<html>
+<head>
+</head>
+<body>
+    <div id="datalist">Listening to data....</div>
+    <script>
+        var source = new EventSource("/data");
+
+        listEl = document.getElementById("datalist");
+
+        source.addEventListener('mydata', function(event) {   // 'mydata' name is like a channel
+            console.log("received: ", event)
+            element = document.createElement("p");
+            element.innerHTML = event.data;
+            listEl.append(element);
+        });
+    </script>
+</body>
+</html>
+
